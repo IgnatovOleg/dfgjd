@@ -1,0 +1,15 @@
+.homePageContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #c4dfe6;
+    min-height: 710px;
+    overflow: hidden;
+
+    .contant {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        overflow: hidden;
+    }
+}

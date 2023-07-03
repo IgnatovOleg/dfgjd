@@ -1,0 +1,73 @@
+.registrationContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;   
+    max-width: 350px;
+    width: 100%;
+    gap: 15px;
+    padding: 16px;
+    margin: 30px auto;
+
+    background: #66a5ad;
+    border-radius: 15px;
+
+    h1 {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+        color: #003b46;
+    }
+
+    .inputInfo {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+
+        span {
+            font-weight: 600;
+            line-height: 15px;
+            width: 120px;
+            color: #003b46;
+        }
+        .error {
+            position: absolute;
+            font-size: 12px;
+            color: rgb(230, 0, 0);
+            font-weight: 700;
+            left: 155px;
+        }
+        .errorLogin {
+            top: 120px;
+        }
+        .errorPassword {
+            top: 177px;
+        }
+        .errorConfPass {
+            top: 235px;
+        }
+        .errorFirstName {
+            top: 291px;
+        }
+        .errorLastName {
+            top: 348px;
+        }
+        .errorEmail {
+            top: 405px;
+        }
+        .errorPhone {
+            top: 462px;
+        }
+    }
+
+    p {
+        margin: auto;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 600;
+        text-decoration: underline;
+
+        color: #003b46;
+
+    }
+}

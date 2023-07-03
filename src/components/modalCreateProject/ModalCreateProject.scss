@@ -1,0 +1,44 @@
+.modalCreateProjectContainer {
+    position: relative;
+    // top: 550px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+
+    max-width: 300px;
+    width: 100%;
+    padding: 30px 50px;
+    margin: auto;
+
+    background: #66a5ad;
+    border-radius: 20px;
+    transition: 1s;
+
+
+
+    .topProject {
+        display: flex;
+
+        h3 {
+            display: flex;
+            margin: auto;
+        }
+
+        .crossIcon {
+            cursor: pointer;
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+
+    .errorLogin {
+        position: absolute;
+        left: 100px;
+        top: 115px;
+
+        font-size: 12px;
+        color: rgb(230, 0, 0);
+        font-weight: 700;
+    }
+}

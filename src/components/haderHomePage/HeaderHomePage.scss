@@ -1,0 +1,39 @@
+.headerHomePageContainer {
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 15px 30px;
+
+    background: #66a5ad;
+
+
+    img {
+        width: 40px
+    }
+
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background: #c4dfe6;
+        color: #003b46;
+
+        padding: 10px;
+        border-radius: 50%;
+    }
+    .icon {
+        width: 25px;
+        height: 25px;
+    }
+    .btnHeader {
+        margin-left: 100px;
+    }
+    .exitIcon {
+        width: 25px;
+        height: 25px;
+        margin-left: auto;
+        cursor: pointer
+    }
+}

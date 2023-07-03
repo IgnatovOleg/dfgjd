@@ -1,0 +1,55 @@
+.authorizationContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    width: 100%;
+    height: max-content;
+    gap: 15px;
+    padding: 16px;
+    margin: 30px auto;
+
+    background: #66a5ad;
+    border-radius: 15px;
+
+    h1 {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+        color: #003b46;
+
+    }
+
+    .signUp {
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+        
+        a {
+            padding: 7px;
+            font-size: 12px;
+            text-decoration: underline;
+            color: #003b46;
+        }
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+    .error {
+        position: absolute;
+        font-size: 12px;
+        color: rgb(230, 0, 0);
+        font-weight: 700;
+        left: 60px;
+    }
+    .errorLogin {
+        top: 108px;
+    }
+    .errorPassword {
+        top: 162px;
+    }
+
+}
