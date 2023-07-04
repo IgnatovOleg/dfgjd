@@ -2,16 +2,17 @@ import React, { CSSProperties } from "react";
 import "./Button.scss"
 
 interface IbuttonProps {
-    buttonName: string;
+    buttonName: string,
+    click?: () => void
 }
 
 
-const Button:React.FC <IbuttonProps> = ({buttonName}) => {
+const Button:React.FC <IbuttonProps> = ({buttonName, click}) => {
 
 
     return (
-        <div className="signIn" id="">
-            <button type="submit">{buttonName}</button>
+        <div className="signIn">
+            <button type="submit" onClick={click}>{buttonName}</button>
         </div>
     )
 }

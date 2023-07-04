@@ -28,15 +28,11 @@ const ModalCreateProject: React.FC<ModalCreateProjectProps> = ({ setVisibleModal
     const { projects } = useSelector((state: RootState) => state.projects)
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        console.log(projects, "projects");
-
-    }, [projects])
-
-    const addProject = (data?: TProject) => {
+    const addProject = (data: TProject) => {
         const newProject: TProject = {
             id: Date.now(),
-            title: data?.title
+            title: data.title,
+            processes: []
         }
         dispatch(addProjectsAction(newProject))
         setVisibleModal(false)
