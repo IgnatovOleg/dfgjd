@@ -28,6 +28,7 @@ export const projectsReducer = (state = defaultState, action: actionTypes) => {
             const currentIndexProject = state.projects.findIndex(p => p.id === obj.id)
             const newArrayProject = [...state.projects]
             newArrayProject[currentIndexProject].processes.push(newProcess)
+            
             return { ...state, processes: newArrayProject}
         case projectsActionTypes.REMOVE_PROCESS_TITLE:
             const { pr, process, newTitle } = action.payload;
