@@ -1,0 +1,51 @@
+.processContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    height: 37px;
+    border-bottom: 1px solid #003b46;
+    padding: 15px 0;
+    max-width: 300px;
+    width: 100%;
+
+    .titleProcess {
+
+        h3 {
+            word-break: break-all;
+            overflow: hidden;
+            flex: 1;
+            color: #003b46;
+        }
+    }
+
+    .buttonsProcess {
+        display: flex;
+        gap: 5px;
+    }
+
+    .btnStyle {
+        font-size: 20px;
+        background: #c4dfe6;
+        padding: 5px;
+        border-radius: 5px;
+        transition: 0.2s;
+        cursor: pointer;
+    }
+
+    .btnStyle:active {
+        color: #66a5ad;
+        transform: translateY(5px);
+        transition: 0.2s ease;
+    }
+
+    .errorTitle {
+        position: absolute;
+        top: 51px;
+        left: 10px;
+        font-size: 12px;
+        color: rgb(230, 0, 0);
+        font-weight: 700;
+    }
+}

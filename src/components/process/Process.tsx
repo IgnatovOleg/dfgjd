@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { removeProcessTitleAction } from "../../store/reducers/projectsReducer";
+import { removeProcessListAction, removeProcessTitleAction } from "../../store/reducers/projectsReducer";
 import { TProcesses, TProject } from "../../types/typesProjectsReducer";
 import Input from "../input/Input";
 import { DataForm } from "../projectWindow/ProjectWindow";
 import "./Process.scss"
+import { AiOutlineEdit } from 'react-icons/ai';
+import { RiDeleteBin2Line } from 'react-icons/ri';
+
 
 interface IProcessProps {
     process: TProcesses,
@@ -33,24 +36,37 @@ const Process: React.FC<IProcessProps> = ({ process, project }) => {
         setTitleProcess(true)
     }
 
+    const removeProcessList = (proj: TProject, proc: TProcesses) => {
+        dispatch(removeProcessListAction(proj, proc))
+    }
+
 
 
     return (
         <div className="processContainer">
-            {titleProcess
-                ? <h3 onClick={() => setTitleProcess(false)}>{process.title}</h3>
-                : <form onSubmit={handleSubmit(newNameProcess)}>
-                    <Input
-                        register={register("title", {
-                            required: "Your project name?",
-                            pattern: {
-                                value: /^[a-zA-Z0-9]+$/,
-                                message: "Pleace enter valid project name",
-                            },
-                        })}
-                    />
-                </form>
-            }
+            <div className="titleProcess">
+                {titleProcess
+                    ? <h3>{process.title}</h3>
+                    : <form onSubmit={handleSubmit(newNameProcess)}>
+                        <Input
+                            register={register("title", {
+                                required: "Your project name?",
+                                pattern: {
+                                    value: /^[a-zA-Z0-9]+$/,
+                                    message: "Pleace enter valid project name [a-zA-Z0-9]",
+                                },
+                                minLength: 1
+                            })}
+                        />
+                        {errors?.title && (<div className="errorTitle">{errors.title.message}</div>)}
+
+                    </form>
+                }
+            </div>
+            <div className="buttonsProcess">
+                <AiOutlineEdit className="btnStyle" onClick={() => setTitleProcess(false)} />
+                <RiDeleteBin2Line className="btnStyle" onClick={() => removeProcessList(project, process)} />
+            </div>
         </div>
     )
 }

@@ -15,6 +15,7 @@ import Process from "../process/Process";
 
 interface ProjectWindowProps {
     project: TProject,
+    
 }
 
 export type DataForm = {
@@ -57,13 +58,11 @@ const ProjectWindow: React.FC<ProjectWindowProps> = ({ project }) => {
         dispatch(addNewProcessAction(project, newProcess))
     }
 
-    
 
-    
+
+
     return (
-        <div
-            className={`projectWindowContainer ${sizeWindow ? "bigWindow" : ""}`}
-        >
+        <div className={`projectWindowContainer ${sizeWindow ? "bigWindow" : ""}`}>
             <div className="topWindow">
                 {titleProject
                     ? <h1 onClick={() => setTitleProject(false)}>{project.title}</h1>
@@ -86,13 +85,11 @@ const ProjectWindow: React.FC<ProjectWindowProps> = ({ project }) => {
                 <RxCross2 className="crossIcon" onClick={() => removeProjects(project)} />
             </div>
             <div className="btnNewProcess">
-                <Button buttonName={"Add new process"} click={addNewProcess}/>
+                <Button buttonName={"Add new process"} click={addNewProcess} />
             </div>
             <div className="pocessesContainer">
                 {project.processes.map(process =>
-                    <div className="processBlock">
-                        <Process process={process} project={project}/>
-                    </div>
+                    <Process process={process} project={project} />
                 )}
             </div>
         </div>

@@ -43,15 +43,17 @@ const ModalCreateProject: React.FC<ModalCreateProjectProps> = ({ setVisibleModal
         <div className="modalCreateProjectContainer">
             <div className="topProject">
                 <h3>Create new project</h3>
-                <RxCross2 className="crossIcon" onClick={() => setVisibleModal(false)}/>
+                <RxCross2 className="crossIcon" onClick={() => setVisibleModal(false)} />
             </div>
             <form onSubmit={handleSubmit(addProject)}>
                 <Input
                     register={register("title", {
+                        required: "Enter name project",
                         pattern: {
                             value: /^[a-zA-Z0-9]+$/,
                             message: "Pleace enter valid login"
-                        }
+                        },
+                        minLength: 5
                     })}
                     placeholder={"enter name project"} />
                 {errors?.title && (<div className="errorLogin">{errors.title.message}</div>)}

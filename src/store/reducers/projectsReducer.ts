@@ -28,8 +28,19 @@ export const projectsReducer = (state = defaultState, action: actionTypes) => {
             const currentIndexProject = state.projects.findIndex(p => p.id === obj.id)
             const newArrayProject = [...state.projects]
             newArrayProject[currentIndexProject].processes.push(newProcess)
-            
             return { ...state, processes: newArrayProject}
+        case projectsActionTypes.DELETE_PROCESSES:
+            const { proj, proc } = action.payload
+            console.log(proj);
+            console.log(proc);
+            
+            
+            // const currentIndex = state.projects.findIndex(p => p.id === proj.id)
+            // console.log(currentIndex);
+            
+            // // const arrProj = [...state.projects]
+            // // arrProj[currentIndex].processes.filter(p => p.id !== proc.id)
+            return {...state}
         case projectsActionTypes.REMOVE_PROCESS_TITLE:
             const { pr, process, newTitle } = action.payload;
             const currentProject = state.projects.findIndex(p => p.id === pr.id)
@@ -45,4 +56,5 @@ export const addProjectsAction = (payload: TProject) => ({ type: projectsActionT
 export const removeProjectsAction = (payload: TProject) => ({ type: projectsActionTypes.REMOVE_PROJECTS, payload })
 export const removeProjectTitleAction = (project: TProject, data: DataForm) => ({ type: projectsActionTypes.REMOVE_PROJECT_TITLE, payload: { project, data } })
 export const addNewProcessAction = (obj: TProject, newProcess: TProcesses) => ({ type: projectsActionTypes.ADD_PROCESS, payload: { obj, newProcess } })
+export const removeProcessListAction = (project: TProject, process: TProcesses) => ({type: projectsActionTypes.REMOVE_PROJECTS, payload: {project, process}})
 export const removeProcessTitleAction = (pr: TProject, process: TProcesses, newTitle: DataForm) => ({ type: projectsActionTypes.REMOVE_PROCESS_TITLE, payload: { pr, process, newTitle } })
