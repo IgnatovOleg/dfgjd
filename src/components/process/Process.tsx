@@ -36,8 +36,9 @@ const Process: React.FC<IProcessProps> = ({ process, project }) => {
         setTitleProcess(true)
     }
 
-    const removeProcessList = (proj: TProject, proc: TProcesses) => {
-        dispatch(removeProcessListAction(proj, proc))
+    const removeProcessList = (project: TProject, process: TProcesses) => {
+        dispatch(removeProcessListAction(project, process))
+        console.log(project, process, "component");
     }
 
 

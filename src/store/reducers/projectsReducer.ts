@@ -56,5 +56,5 @@ export const addProjectsAction = (payload: TProject) => ({ type: projectsActionT
 export const removeProjectsAction = (payload: TProject) => ({ type: projectsActionTypes.REMOVE_PROJECTS, payload })
 export const removeProjectTitleAction = (project: TProject, data: DataForm) => ({ type: projectsActionTypes.REMOVE_PROJECT_TITLE, payload: { project, data } })
 export const addNewProcessAction = (obj: TProject, newProcess: TProcesses) => ({ type: projectsActionTypes.ADD_PROCESS, payload: { obj, newProcess } })
-export const removeProcessListAction = (project: TProject, process: TProcesses) => ({type: projectsActionTypes.REMOVE_PROJECTS, payload: {project, process}})
+export const removeProcessListAction = (proj: TProject, proc: TProcesses) => ({type: projectsActionTypes.REMOVE_PROJECTS, payload: {proj, proc}})
 export const removeProcessTitleAction = (pr: TProject, process: TProcesses, newTitle: DataForm) => ({ type: projectsActionTypes.REMOVE_PROCESS_TITLE, payload: { pr, process, newTitle } })
