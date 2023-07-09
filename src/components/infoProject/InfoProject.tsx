@@ -8,8 +8,8 @@ import { TProject } from "../../types/typesProjectsReducer";
 import Button from "../button/Button";
 import Input from "../input/Input";
 import Process from "../process/Process";
-import { DataForm } from "./ProjectWindow";
-import "./ProjectWindow.scss";
+import { DataForm } from "../projectWindow/ProjectWindow";
+import "./InfoProject.scss";
 
 interface InfoProjectProps {
     project: TProject,
@@ -17,7 +17,7 @@ interface InfoProjectProps {
     setSizeWindow: (sizeWindow: boolean) => void
 }
 
-const InfoProject:React.FC <InfoProjectProps> = ({project, sizeWindow, setSizeWindow}) => {
+const InfoProject:React.FC <InfoProjectProps> = ({project}) => {
 
     const [titleProject, setTitleProject] = useState<boolean>(true)
 
@@ -32,6 +32,7 @@ const InfoProject:React.FC <InfoProjectProps> = ({project, sizeWindow, setSizeWi
     })
 
     const dispatch = useDispatch()
+    
 
     const renameProject = (data: DataForm) => {
         dispatch(removeProjectTitleAction(project, data))
@@ -41,14 +42,17 @@ const InfoProject:React.FC <InfoProjectProps> = ({project, sizeWindow, setSizeWi
     const addNewProcess = () => {
         const newProcess = {
             id: Date.now(),
-            title: ""
+            title: "",
+            tasks: [],
+            is_active: false,
         }
         dispatch(addNewProcessAction(project, newProcess))
+        reset()
     }
 
 
     return (
-        <>
+        <div className="infoProjectContainer">
             <div className="topWindow">
                 {titleProject
                     ? <h1 onClick={() => setTitleProject(false)}>{project.title}</h1>
@@ -64,7 +68,7 @@ const InfoProject:React.FC <InfoProjectProps> = ({project, sizeWindow, setSizeWi
                             })}
                         />
                     </form>
-                    <Button buttonName={"Cencel"}/>
+                    <Button buttonName={"Cencel"} click={() => setTitleProject(true)}/>
                     </div>
                 }
                 
@@ -77,7 +81,7 @@ const InfoProject:React.FC <InfoProjectProps> = ({project, sizeWindow, setSizeWi
                     <Process process={process} project={project} />
                 )}
             </div>
-        </>
+        </div>
     )
 }
 

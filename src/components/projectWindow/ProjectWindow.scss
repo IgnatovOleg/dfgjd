@@ -1,73 +1,38 @@
 .projectWindowContainer {
+    position: relative;
     padding: 20px 40px;
     background: #66a5ad;
     border-radius: 20px;
-    min-width: 320px;
+    max-width: 330px;
+    width: 100%;
     height: 550px;
     margin: 20px;
     overflow: hidden;
     transition: 0.3s ease-in-out;
 
-    .topWindow {
-        display: flex;
-        justify-content: space-between;
-        max-width: 320px;
-        width: 100%;
-        gap: 15px;
-
-        h1 {
-            word-break: break-all;
-            overflow: hidden;
-            flex: 1;
-            color: #003b46;
-
-        }
-
-        .crossIcon {
-            margin-top: 10px;
-            cursor: pointer;
-            color: #003b46;
-
-        }
-        .formNewTitle{
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-        }
-    }
-    .processBlock {
-        padding: 7px 0;
-    }
-
-    .btnNewProcess {
-        margin-top: 20px;
-        margin-left: 80px;
-        margin-bottom: 20px;
-    }
     
     .windowControl {
+        position:absolute;
+        right: 30px;
         display: flex;
         gap: 20px;
-        padding: 10px;
         float: right;
-
     }
+
     .smallIcon {
         cursor: pointer;
         margin-left: auto;
         color: #003b46;
+    }
 
+    .windowContant {
+        display: flex;
+        gap: 40px;
     }
-    .processesContainer {
-        height: 420px;
-        overflow-y: auto;
-    }
-    .processesContainer::-webkit-scrollbar {
-        display: none;
-      }
+    
 }
 
 .bigWindow {
-    min-width: 1300px;
+    max-width: 1300px;
     transition: 0.3s ease-in-out;
 }

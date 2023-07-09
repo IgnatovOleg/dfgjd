@@ -1,0 +1,68 @@
+.infoProjectContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 340px;
+
+    .topWindow {
+        display: flex;
+        justify-content: space-between;
+        width: 330px;
+        gap: 15px;
+
+        h1 {
+            word-break: break-all;
+            overflow: hidden;
+            flex: 1;
+            color: #003b46;
+
+        }
+
+        .crossIcon {
+            margin-top: 10px;
+            cursor: pointer;
+            color: #003b46;
+
+        }
+
+        .formNewTitle {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .processBlock {
+            padding: 7px 0;
+        }
+    }
+
+    .processesContainer {
+        height: 420px;
+        overflow-y: auto;
+    }
+    .processesContainer::-webkit-scrollbar {
+        display: none;
+        width: 4px;
+    }
+
+    .processesContainer:hover::-webkit-scrollbar {
+        display: block;
+        transition: 0.5s;
+    }
+
+    .processesContainer::-webkit-scrollbar-track {
+        background: none;
+    }
+
+    .processesContainer::-webkit-scrollbar-thumb {
+        border-radius: 20px;
+        border: 3px solid #003b46;
+    }
+
+
+    .btnNewProcess {
+        margin-top: 20px;
+        margin-left: 80px;
+        margin-bottom: 20px;
+    }
+}

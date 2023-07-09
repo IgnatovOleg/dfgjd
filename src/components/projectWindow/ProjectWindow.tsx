@@ -6,7 +6,8 @@ import { useDispatch } from "react-redux";
 import { BiWindows } from 'react-icons/bi';
 import { BiWindow } from 'react-icons/bi';
 import { removeProjectsAction } from "../../store/reducers/projectsReducer";
-import InfoProject from "./InfoProject";
+import InfoProject from "../infoProject/InfoProject";
+import ProcessWindow from "../processWindow/ProcessWindow";
 
 
 
@@ -42,7 +43,10 @@ const ProjectWindow: React.FC<ProjectWindowProps> = ({ project }) => {
                 }
                 <RxCross2 className="crossIcon" onClick={() => removeProjects(project)} />
             </div>
-            <InfoProject project={project} sizeWindow={sizeWindow} setSizeWindow={setSizeWindow} />
+            <div className="windowContant">
+                <InfoProject project={project} sizeWindow={sizeWindow} setSizeWindow={setSizeWindow} />
+                <ProcessWindow project={project}/>
+            </div>
         </div>
     )
 }
