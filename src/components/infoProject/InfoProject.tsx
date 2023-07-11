@@ -71,7 +71,6 @@ const InfoProject:React.FC <InfoProjectProps> = ({project}) => {
                     <Button buttonName={"Cencel"} click={() => setTitleProject(true)}/>
                     </div>
                 }
-                
             </div>
             <div className="btnNewProcess">
                 <Button buttonName={"Add new process"} click={addNewProcess} />
