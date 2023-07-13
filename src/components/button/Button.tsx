@@ -1,4 +1,5 @@
 import React, { CSSProperties } from "react";
+import { TProject } from "../../types/typesProjectsReducer";
 import "./Button.scss"
 
 interface IbuttonProps {

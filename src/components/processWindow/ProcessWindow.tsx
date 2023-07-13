@@ -13,14 +13,12 @@ const ProcessWindow:React.FC <ProcessWindowProps> = ({project}) => {
 
     const dispatch = useDispatch()
 
-    const addNewTask = (project: TProject) => {
+    const addNewTask = () => {
         const newTask: TTask = {
             id: Date.now(),
             title: "kjkhghjk"
         }
         dispatch(addTaskAction(project, newTask))
-        console.log(project, newTask, "component");
-        
     }
 
 
