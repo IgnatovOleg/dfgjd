@@ -1,18 +1,25 @@
 .homePageContainer {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    background: #c4dfe6;
     overflow: hidden;
-    height: 713px;
+
 
     .contant {
         display: flex;
         overflow-x: auto;
-        padding: 0 25px;
+        height: 638px;
+
+        opacity: 1;
+        transition: 1s;
 
     }
+
     .contant::-webkit-scrollbar {
         display: none;
-      }
+    }
+
+    .opacityContant {
+        opacity: 0.2;
+        transition: 1s;
+    }
 }

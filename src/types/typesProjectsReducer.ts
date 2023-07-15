@@ -1,4 +1,5 @@
-import { DataForm } from "../components/projectWindow/ProjectWindow"
+import { DataForm } from "../components/projectWindow/ProjectWindow";
+
 
 export type TProjects = {
     projects: TProject[]
@@ -16,7 +17,8 @@ export type TProcesses = {
 }
 export type TTask = {
     id: number,
-    title: string
+    title: string,
+    
 }
 
 export enum projectsActionTypes {
@@ -27,14 +29,10 @@ export enum projectsActionTypes {
     ADD_PROCESS = "ADD_PROCESS",
     DELETE_PROCESSES = "DELETE_PROCESSES",
     REMOVE_PROCESS_TITLE = "REMOVE_PROCESS_TITLE",
+    ACTIVE_PROCESS = "ACTIVE_PROCESS",
 
     ADD_TASK = "ADD_TASK",
 }
-
-// export type actionTypes = {
-//     type: projectsActionTypes.ADD_PROJECTS | projectsActionTypes.REMOVE_PROJECTS | projectsActionTypes.REMOVE_PROJECT_TITLE | projectsActionTypes.ADD_PROCESS | projectsActionTypes.REMOVE_PROCESS_TITLE | projectsActionTypes.DELETE_PROCESSES | projectsActionTypes.ADD_TASK,
-//     payload: TProject | any
-// }
 
 export type addProject = {
     type: projectsActionTypes.ADD_PROJECTS,
@@ -59,6 +57,29 @@ export type addProcess = {
         newProcess: TProcesses
     }
 }
+export type deleteProcesses= {
+    type: projectsActionTypes.DELETE_PROCESSES,
+    payload: {
+        proj: TProject,
+        proc: TProcesses
+    }
+}
+export type removeProcessTitle = {
+    type: projectsActionTypes.REMOVE_PROCESS_TITLE,
+    payload: {
+        pr: TProject,
+        process: TProcesses,
+        newTitle: DataForm
+    }
+}
+export type activeProcess = {
+    type: projectsActionTypes.ACTIVE_PROCESS,
+    payload: {
+        object: TProject,
+        proce: TProcesses
+    }
+}
+
 
 
 export type addTask = {
@@ -69,4 +90,4 @@ export type addTask = {
     }
 }
 
-export type actionTypes = addProject | removeProjects | removeProjectTitle | addProcess | addTask
+export type actionTypes = addProject | removeProjects | removeProjectTitle | addProcess | deleteProcesses | removeProcessTitle | activeProcess | addTask

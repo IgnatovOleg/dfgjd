@@ -17,6 +17,7 @@ export const projectsReducer = (state = defaultState, action: actionTypes) => {
             const { project, data } = action.payload
             const updatedProjects = state.projects.map((p) => p.id === project.id ? { ...p, title: data.title } : p);
             return { ...state, projects: updatedProjects }
+
         case projectsActionTypes.ADD_PROCESS:
             const { obj, newProcess } = action.payload
             const currentIndexProject = state.projects.findIndex(p => p.id === obj.id)
@@ -35,14 +36,14 @@ export const projectsReducer = (state = defaultState, action: actionTypes) => {
             const newArray = [...state.projects]
             newArray[currentProject].processes = newArray[currentProject].processes.map(p => p.id === process.id ? {...p, title: newTitle.title} : p);
             return {...state, process: newArray}
-        case projectsActionTypes.ADD_TASK:
-            const {pt, newTask} = action.payload
-            console.log(pt, newTask);
-            
-            
-            return {...state}
+        case projectsActionTypes.ACTIVE_PROCESS:
+            const { object, proce} = action.payload
+            const indexProject = state.projects.findIndex(p => p.id === object.id)
+            const newProjects = [...state.projects]
+            newProjects[indexProject].processes = newProjects[indexProject].processes.map(p => p.id === proce.id ? {...p, is_active: !p.is_active} : {...p, is_active: false})
+            return {...state, projects: newProjects}
         default:
-            return { ...state }
+            return { ...state}
     }
 }
 
@@ -53,5 +54,6 @@ export const removeProjectTitleAction = (project: TProject, data: DataForm) => (
 export const addNewProcessAction = (obj: TProject, newProcess: TProcesses) => ({ type: projectsActionTypes.ADD_PROCESS, payload: { obj, newProcess } })
 export const removeProcessListAction = (proj: TProject, proc: TProcesses) => ({type: projectsActionTypes.DELETE_PROCESSES, payload: {proj, proc}})
 export const removeProcessTitleAction = (pr: TProject, process: TProcesses, newTitle: DataForm) => ({ type: projectsActionTypes.REMOVE_PROCESS_TITLE, payload: { pr, process, newTitle } })
+export const activeProcessAction = (object: TProject, proce: TProcesses) => ({type: projectsActionTypes.ACTIVE_PROCESS, payload: {object, proce}})
 
 export const addTaskAction = (pt: TProject, newTask: TTask) => ({type: projectsActionTypes.ADD_TASK, paylaod: {pt, newTask}})

@@ -2,12 +2,12 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 340px;
+    max-width: 340px;
+    width: 100%;
 
     .topWindow {
         display: flex;
-        justify-content: space-between;
-        width: 330px;
+        width: 340px;
         gap: 15px;
 
         h1 {
@@ -27,8 +27,8 @@
 
         .formNewTitle {
             display: flex;
+            gap: 7px;
             width: 100%;
-            justify-content: space-between;
         }
 
         .processBlock {
@@ -61,8 +61,7 @@
 
 
     .btnNewProcess {
-        margin-top: 20px;
-        margin-left: 80px;
-        margin-bottom: 20px;
+        margin: 20px auto;
+
     }
 }

@@ -41,11 +41,19 @@ const ProjectWindow: React.FC<ProjectWindowProps> = ({ project }) => {
                     ? <BiWindows className="smallIcon" onClick={() => setSizeWindow(false)} />
                     : <BiWindow className="smallIcon" onClick={() => setSizeWindow(true)} />
                 }
-                <RxCross2 className="crossIcon" onClick={() => removeProjects(project)} />
+                <RxCross2 className="smallIcon" onClick={() => removeProjects(project)} />
             </div>
             <div className="windowContant">
                 <InfoProject project={project} sizeWindow={sizeWindow} setSizeWindow={setSizeWindow} />
-                <ProcessWindow project={project}/>
+                {project.processes.map(process =>
+                    <div className={process.is_active ? "processBlock" : "processNone"}>
+                        {process.is_active
+                            ? <ProcessWindow project={project} process={process}/>
+                            : <div></div>
+                        }
+                    </div>
+                )}
+
             </div>
         </div>
     )

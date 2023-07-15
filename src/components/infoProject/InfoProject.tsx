@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { BiWindow, BiWindows } from "react-icons/bi";
-import { RxCross2 } from "react-icons/rx";
 import { useDispatch } from "react-redux";
-import { addNewProcessAction, removeProjectsAction, removeProjectTitleAction } from "../../store/reducers/projectsReducer";
+import { addNewProcessAction, removeProjectTitleAction } from "../../store/reducers/projectsReducer";
 import { TProject } from "../../types/typesProjectsReducer";
 import Button from "../button/Button";
 import Input from "../input/Input";
@@ -17,7 +15,7 @@ interface InfoProjectProps {
     setSizeWindow: (sizeWindow: boolean) => void
 }
 
-const InfoProject:React.FC <InfoProjectProps> = ({project}) => {
+const InfoProject: React.FC<InfoProjectProps> = ({ project }) => {
 
     const [titleProject, setTitleProject] = useState<boolean>(true)
 
@@ -32,10 +30,12 @@ const InfoProject:React.FC <InfoProjectProps> = ({project}) => {
     })
 
     const dispatch = useDispatch()
-    
+
 
     const renameProject = (data: DataForm) => {
         dispatch(removeProjectTitleAction(project, data))
+        console.log(data, "data");
+        
         setTitleProject(true)
         reset()
     }
@@ -44,12 +44,11 @@ const InfoProject:React.FC <InfoProjectProps> = ({project}) => {
             id: Date.now(),
             title: "",
             tasks: [],
-            is_active: false,
+            is_active: false
         }
         dispatch(addNewProcessAction(project, newProcess))
         reset()
     }
-
 
     return (
         <div className="infoProjectContainer">
@@ -58,17 +57,17 @@ const InfoProject:React.FC <InfoProjectProps> = ({project}) => {
                     ? <h1 onClick={() => setTitleProject(false)}>{project.title}</h1>
                     : <div className="formNewTitle">
                         <form onSubmit={handleSubmit(renameProject)}>
-                        <Input
-                            register={register("title", {
-                                required: "Your project name?",
-                                pattern: {
-                                    value: /^[a-zA-Z0-9]+$/,
-                                    message: "Pleace enter valid project name",
-                                },
-                            })}
-                        />
-                    </form>
-                    <Button buttonName={"Cencel"} click={() => setTitleProject(true)}/>
+                            <Input
+                                register={register("title", {
+                                    required: "Your project name?",
+                                    pattern: {
+                                        value: /^[a-zA-Z0-9]+$/,
+                                        message: "Pleace enter valid project name",
+                                    },
+                                })}
+                            />
+                        </form>
+                            <Button buttonName={"Cencel"} click={() => setTitleProject(true)} />
                     </div>
                 }
             </div>

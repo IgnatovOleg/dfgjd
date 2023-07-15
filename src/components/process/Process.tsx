@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { removeProcessListAction, removeProcessTitleAction } from "../../store/reducers/projectsReducer";
+import { activeProcessAction, removeProcessListAction, removeProcessTitleAction } from "../../store/reducers/projectsReducer";
 import { TProcesses, TProject } from "../../types/typesProjectsReducer";
 import Input from "../input/Input";
 import { DataForm } from "../projectWindow/ProjectWindow";
@@ -39,11 +39,16 @@ const Process: React.FC<IProcessProps> = ({ process, project }) => {
     const removeProcessList = (project: TProject, process: TProcesses) => {
         dispatch(removeProcessListAction(project, process))
     }
+    
+    const activeProcess = (e: React.MouseEvent) => {
+        if (e.target instanceof HTMLInputElement) { return }
+        dispatch(activeProcessAction(project, process))
+    }
 
 
 
     return (
-        <div className="processContainer">
+        <div className="processContainer" onClick={(e) => activeProcess(e)}>
             <div className="titleProcess">
                 {titleProcess
                     ? <h3>{process.title}</h3>

@@ -19,7 +19,7 @@ const HomePage: React.FC = () => {
     return (
         <div className="homePageContainer">
             <HeaderHomePage setVisibleModal={setVisibleModal}/>
-            <div className="contant">
+            <div className={`contant ${visibleModal ? "opacityContant" : ""}`}>
                 {projects.map(project => (
                     <ProjectWindow key={project.id} project={project}/>
                 ))}

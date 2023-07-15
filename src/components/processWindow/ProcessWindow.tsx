@@ -1,15 +1,16 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { addTaskAction } from "../../store/reducers/projectsReducer";
-import { TProject, TTask } from "../../types/typesProjectsReducer";
+import { TProcesses, TProject, TTask } from "../../types/typesProjectsReducer";
 import Button from "../button/Button";
 import "./ProcessWindow.scss";
 
 interface ProcessWindowProps {
-    project: TProject
+    project: TProject,
+    process: TProcesses,
 }
 
-const ProcessWindow:React.FC <ProcessWindowProps> = ({project}) => {
+const ProcessWindow: React.FC<ProcessWindowProps> = ({ project, process }) => {
 
     const dispatch = useDispatch()
 
@@ -22,18 +23,14 @@ const ProcessWindow:React.FC <ProcessWindowProps> = ({project}) => {
     }
 
 
-    return(
+    return (
         <div className="processWindowContainer">
-            <h3>Process jobs</h3>
-            <Button buttonName={"Add task"} click={addNewTask}/>
+            <h3>{process.title} tasks</h3>
+            <Button buttonName={"Add task"} click={addNewTask} />
             <div className="tasks">
-                {project.processes.map(process => (
-                    process.tasks.map(task => (
-                        <div className="taskContainer">
-                            {task.title}
-                        </div>
-                    ))
-                ))}
+                {process.tasks.map(task => 
+                    <h3>{task.title}</h3>
+                    )}
             </div>
         </div>
     )
