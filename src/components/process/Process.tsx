@@ -13,11 +13,13 @@ import { RiDeleteBin2Line } from 'react-icons/ri';
 interface IProcessProps {
     process: TProcesses,
     project: TProject,
+    sizeWindow: boolean,
+    setSizeWindow: (sizeWindow: boolean) => void
 }
 
 
 
-const Process: React.FC<IProcessProps> = ({ process, project }) => {
+const Process: React.FC<IProcessProps> = ({ process, project, setSizeWindow, sizeWindow }) => {
 
     const [titleProcess, setTitleProcess] = useState<boolean>(false)
 
@@ -39,11 +41,17 @@ const Process: React.FC<IProcessProps> = ({ process, project }) => {
     const removeProcessList = (project: TProject, process: TProcesses) => {
         dispatch(removeProcessListAction(project, process))
     }
-    
+
     const activeProcess = (e: React.MouseEvent) => {
         if (e.target instanceof HTMLInputElement) { return }
         dispatch(activeProcessAction(project, process))
+        if(process.is_active) {
+            return setSizeWindow(false)
+        }
+        setSizeWindow(true)
     }
+    console.log(sizeWindow);
+    
 
 
 

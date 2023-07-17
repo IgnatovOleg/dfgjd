@@ -9,7 +9,6 @@ import Registration from './components/registration/Registration';
 function App() {
   return (
     <div className="App">
-      {/* <HomePage/> */}
       <Routes>
         <Route path='/' element={<Authorization />} />
         <Route path='/registration' element={<Registration />} />

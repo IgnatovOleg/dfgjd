@@ -15,7 +15,7 @@ interface InfoProjectProps {
     setSizeWindow: (sizeWindow: boolean) => void
 }
 
-const InfoProject: React.FC<InfoProjectProps> = ({ project }) => {
+const InfoProject: React.FC<InfoProjectProps> = ({ project, sizeWindow, setSizeWindow }) => {
 
     const [titleProject, setTitleProject] = useState<boolean>(true)
 
@@ -76,7 +76,7 @@ const InfoProject: React.FC<InfoProjectProps> = ({ project }) => {
             </div>
             <div className="processesContainer">
                 {project.processes.map(process =>
-                    <Process process={process} project={project} />
+                    <Process process={process} project={project} sizeWindow={sizeWindow} setSizeWindow={setSizeWindow}/>
                 )}
             </div>
         </div>
