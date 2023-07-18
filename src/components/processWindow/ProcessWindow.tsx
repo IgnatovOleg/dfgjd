@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { addTaskAction } from "../../store/reducers/projectsReducer";
 import { TProcesses, TProject, TTask } from "../../types/typesProjectsReducer";
 import Button from "../button/Button";
+import Task from "../task/Task";
 import "./ProcessWindow.scss";
 
 interface ProcessWindowProps {
@@ -14,13 +15,14 @@ const ProcessWindow: React.FC<ProcessWindowProps> = ({ project, process }) => {
 
     const dispatch = useDispatch()
 
-    const addNewTask = () => {
+    const addNewTask = (): void => {
         const newTask: TTask = {
             id: Date.now(),
-            title: "kjkhghjk"
+            title: "taskTitle"
         }
-        dispatch(addTaskAction(project, newTask))
+        dispatch(addTaskAction(project, process, newTask))
     }
+
 
 
     return (
@@ -29,7 +31,7 @@ const ProcessWindow: React.FC<ProcessWindowProps> = ({ project, process }) => {
             <Button buttonName={"Add task"} click={addNewTask} />
             <div className="tasks">
                 {process.tasks.map(task => 
-                    <h3>{task.title}</h3>
+                    <Task task={task}/>
                     )}
             </div>
         </div>

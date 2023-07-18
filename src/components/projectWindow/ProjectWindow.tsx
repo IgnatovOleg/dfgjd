@@ -30,6 +30,7 @@ const ProjectWindow: React.FC<ProjectWindowProps> = ({ project }) => {
     const removeProjects = (project: TProject) => {
         dispatch(removeProjectsAction(project))
     }
+    
 
 
 

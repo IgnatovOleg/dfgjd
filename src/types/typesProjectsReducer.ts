@@ -85,7 +85,8 @@ export type activeProcess = {
 export type addTask = {
     type: projectsActionTypes.ADD_TASK,
     payload: {
-        pt: TProject,
+        projectForAddNewTask: TProject,
+        processForAddNewTask: TProcesses,
         newTask: TTask,
     }
 }
