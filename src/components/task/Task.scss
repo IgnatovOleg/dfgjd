@@ -1,3 +1,30 @@
 .taskContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     padding: 5px 0px;
+
+    .btnTask {
+        display: flex;
+        gap: 5px;
+
+        .btnStyle {
+            font-size: 20px;
+            background: #c4dfe67e;
+            padding: 8px;
+            border-radius: 5px;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .btnStyle:hover {
+            background: #c4dfe6;
+        }
+
+        .btnStyle:active {
+            color: #66a5ad;
+            background: #c4dfe6;
+            transform: translateY(3px);
+            transition: 0.2s ease;
+        }
+    }
 }
