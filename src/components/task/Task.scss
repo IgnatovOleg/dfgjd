@@ -1,8 +1,12 @@
 .taskContainer {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     padding: 5px 10px;
+    gap: 15px;
+
+    h3 {
+        word-break: break-all;
+    }
 
     .btnTask {
         display: flex;

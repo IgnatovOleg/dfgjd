@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form"
 import { AiOutlineEdit } from 'react-icons/ai';
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import { useDispatch } from "react-redux"
-import { removeTaskDescAction } from "../../store/reducers/projectsReducer"
+import { editTaskDescAction, removeTaskFromList } from "../../store/reducers/projectsReducer"
 
 interface TaskProps {
     project: TProject,
@@ -30,9 +30,12 @@ const Task: React.FC<TaskProps> = ({ project, process, task }) => {
     const dispatch = useDispatch()
 
     const removeDescriptionTask = (data: TTask) => {
-        dispatch(removeTaskDescAction(project, process, task, data))
+        dispatch(editTaskDescAction(project, process, task, data))
         setTitleTask(true)
         reset()
+    }
+    const removeTask = () => {
+        dispatch(removeTaskFromList(project, process, task))
     }
 
     return (
@@ -54,7 +57,7 @@ const Task: React.FC<TaskProps> = ({ project, process, task }) => {
             }
             <div className="btnTask">
                 <AiOutlineEdit className="btnStyle" onClick={() => setTitleTask(false)}/>
-                <RiDeleteBin2Line className="btnStyle" />
+                <RiDeleteBin2Line className="btnStyle" onClick={() => removeTask()}/>
             </div>
         </div>
     )

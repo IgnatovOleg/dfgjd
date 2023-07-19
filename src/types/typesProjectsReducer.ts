@@ -32,7 +32,8 @@ export enum projectsActionTypes {
     ACTIVE_PROCESS = "ACTIVE_PROCESS",
 
     ADD_TASK = "ADD_TASK",
-    REMOVE_DESCRIPTION_TASK = "REMOVE_DESCRIPTION_TASK"
+    EDIT_DESCRIPTION_TASK = "EDIT_DESCRIPTION_TASK",
+    REMOVE_TASK_LIST = "REMOVE_TASK_LIST"
 }
 // ---------Project--------
 export type addProject = {
@@ -92,8 +93,8 @@ export type addTask = {
         newTask: TTask,
     }
 }
-export type removeDescriptionTask = {
-    type: projectsActionTypes.REMOVE_DESCRIPTION_TASK,
+export type editDescriptionTask = {
+    type: projectsActionTypes.EDIT_DESCRIPTION_TASK,
     payload: {
         projectForNewTaskDesc: TProject,
         processForNewTaskDesc: TProcesses,
@@ -101,5 +102,14 @@ export type removeDescriptionTask = {
         dataForNewTaskDesc: TTask
     }
 }
+export type removeTask = {
+    type: projectsActionTypes.REMOVE_TASK_LIST,
+    payload: {
+        projectForDeLTask: TProject,
+        processForDelTask: TProcesses,
+        taskForDelTask: TTask
+    }
 
-export type actionTypes = addProject | removeProjects | removeProjectTitle | addProcess | deleteProcesses | removeProcessTitle | activeProcess | addTask | removeDescriptionTask
+}
+
+export type actionTypes = addProject | removeProjects | removeProjectTitle | addProcess | deleteProcesses | removeProcessTitle | activeProcess | addTask | editDescriptionTask | removeTask
