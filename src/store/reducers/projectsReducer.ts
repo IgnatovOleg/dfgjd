@@ -50,6 +50,13 @@ export const projectsReducer = (state = defaultState, action: actionTypes) => {
             const currentProcessForAddNewTask = arrayProjects[currentProjectForAddNewTask].processes.findIndex(p => p.id === processForAddNewTask.id)
             arrayProjects[currentProjectForAddNewTask].processes[currentProcessForAddNewTask].tasks.push(newTask)
             return {...state, projects: arrayProjects}
+        case projectsActionTypes.REMOVE_DESCRIPTION_TASK:
+            const {projectForNewTaskDesc, processForNewTaskDesc, taskWithNewDesc, dataForNewTaskDesc} = action.payload
+            const currentProjectForNewDescTask = state.projects.findIndex(p => p.id === projectForNewTaskDesc.id)
+            const arrayWithNewDescTask = [...state.projects]
+            const currentProcessForNewDescTask = arrayWithNewDescTask[currentProjectForNewDescTask].processes.findIndex(p => p.id === processForNewTaskDesc.id)
+            arrayWithNewDescTask[currentProcessForNewDescTask].processes[currentProcessForNewDescTask].tasks.map(t => t.id === taskWithNewDesc.id ? {...t, title: t.title = dataForNewTaskDesc.title}: t)
+            return{...state}
         default:
             return { ...state}
     }
@@ -65,3 +72,4 @@ export const removeProcessTitleAction = (pr: TProject, process: TProcesses, newT
 export const activeProcessAction = (object: TProject, proce: TProcesses) => ({type: projectsActionTypes.ACTIVE_PROCESS, payload: {object, proce}})
 
 export const addTaskAction = (projectForAddNewTask: TProject, processForAddNewTask: TProcesses, newTask: TTask) => ({type: projectsActionTypes.ADD_TASK, payload: {projectForAddNewTask, processForAddNewTask, newTask}})
+export const removeTaskDescAction = (projectForNewTaskDesc: TProject, processForNewTaskDesc: TProcesses, taskWithNewDesc: TTask, dataForNewTaskDesc: TTask) => ({type: projectsActionTypes.REMOVE_DESCRIPTION_TASK, payload: {projectForNewTaskDesc, processForNewTaskDesc, taskWithNewDesc, dataForNewTaskDesc}})
