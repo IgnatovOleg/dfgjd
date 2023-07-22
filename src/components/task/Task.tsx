@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form"
 import { AiOutlineEdit } from 'react-icons/ai';
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import { useDispatch } from "react-redux"
-import { editTaskDescAction, removeTaskFromList } from "../../store/reducers/projectsReducer"
+import { editTaskDescAction, removeTaskFromListaction, visibleTitleAction,  } from "../../store/reducers/projectsReducer"
 
 interface TaskProps {
     project: TProject,
@@ -25,22 +25,24 @@ const Task: React.FC<TaskProps> = ({ project, process, task }) => {
         mode: "onChange"
     })
 
-    const [titleTask, setTitleTask] = useState(false)
 
     const dispatch = useDispatch()
 
     const removeDescriptionTask = (data: TTask) => {
         dispatch(editTaskDescAction(project, process, task, data))
-        setTitleTask(true)
+        dispatch(visibleTitleAction(project, process, task))
         reset()
     }
     const removeTask = () => {
-        dispatch(removeTaskFromList(project, process, task))
+        dispatch(removeTaskFromListaction(project, process, task))
+    }
+    const visibleTitle = () => {
+        dispatch(visibleTitleAction(project, process, task))
     }
 
     return (
         <div className="taskContainer">
-            {titleTask
+            {task.visibleTitle
                 ? <h3>{task.title}</h3>
                 : <form onSubmit={handleSubmit(removeDescriptionTask)}>
                     <Input
@@ -56,7 +58,7 @@ const Task: React.FC<TaskProps> = ({ project, process, task }) => {
                 </form>
             }
             <div className="btnTask">
-                <AiOutlineEdit className="btnStyle" onClick={() => setTitleTask(false)}/>
+                <AiOutlineEdit className="btnStyle"/>
                 <RiDeleteBin2Line className="btnStyle" onClick={() => removeTask()}/>
             </div>
         </div>

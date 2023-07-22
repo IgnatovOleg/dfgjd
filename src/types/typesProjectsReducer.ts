@@ -18,7 +18,7 @@ export type TProcesses = {
 export type TTask = {
     id: number,
     title: string,
-    
+    visibleTitle: boolean
 }
 
 export enum projectsActionTypes {
@@ -33,6 +33,7 @@ export enum projectsActionTypes {
 
     ADD_TASK = "ADD_TASK",
     EDIT_DESCRIPTION_TASK = "EDIT_DESCRIPTION_TASK",
+    VISIBLE_TITLE = "VISIBLE_TITLE",
     REMOVE_TASK_LIST = "REMOVE_TASK_LIST"
 }
 // ---------Project--------
@@ -102,6 +103,14 @@ export type editDescriptionTask = {
         dataForNewTaskDesc: TTask
     }
 }
+export type visibleTitle = {
+    type: projectsActionTypes.VISIBLE_TITLE,
+    payload: {
+        projectForVisibleTitle: TProject,
+        processForVisibleTitle: TProcesses,
+        taskForVisibleTitle: TTask,
+    }
+}
 export type removeTask = {
     type: projectsActionTypes.REMOVE_TASK_LIST,
     payload: {
@@ -112,4 +121,4 @@ export type removeTask = {
 
 }
 
-export type actionTypes = addProject | removeProjects | removeProjectTitle | addProcess | deleteProcesses | removeProcessTitle | activeProcess | addTask | editDescriptionTask | removeTask
+export type actionTypes = addProject | removeProjects | removeProjectTitle | addProcess | deleteProcesses | removeProcessTitle | activeProcess | addTask | editDescriptionTask | visibleTitle | removeTask

@@ -57,6 +57,14 @@ export const projectsReducer = (state = defaultState, action: actionTypes) => {
             const currentProcessForNewDescTask = arrayWithNewDescTask[currentProjectForNewDescTask].processes.findIndex(p => p.id === processForNewTaskDesc.id)
             arrayWithNewDescTask[currentProcessForNewDescTask].processes[currentProcessForNewDescTask].tasks.map(t => t.id === taskWithNewDesc.id ? { ...t, title: t.title = dataForNewTaskDesc.title } : t)
             return { ...state, projects: arrayWithNewDescTask }
+        case projectsActionTypes.VISIBLE_TITLE:
+            const {projectForVisibleTitle, processForVisibleTitle, taskForVisibleTitle} = action.payload
+            const currentProjectForVisibleTitle = state.projects.findIndex(p => p.id === projectForNewTaskDesc.id)
+            const arrayWithVisibleTitle = [...state.projects]
+            const currentProcessForVisibleTitle = arrayWithVisibleTitle[currentProjectForVisibleTitle].processes.findIndex(p => p.id === processForVisibleTitle.id)
+            arrayWithVisibleTitle[currentProcessForVisibleTitle].processes[currentProcessForVisibleTitle].tasks.map(t => t.id === taskForVisibleTitle.id ? { ...t, title: t.visibleTitle = !t.visibleTitle } : t)
+            return { ...state, projects: arrayWithVisibleTitle}
+            return{...state}
         case projectsActionTypes.REMOVE_TASK_LIST:
             const { projectForDeLTask, processForDelTask, taskForDelTask } = action.payload
             const currentProjectForDeLTask = state.projects.findIndex(p => p.id === projectForDeLTask.id)
@@ -81,4 +89,5 @@ export const activeProcessAction = (object: TProject, proce: TProcesses) => ({ t
 
 export const addTaskAction = (projectForAddNewTask: TProject, processForAddNewTask: TProcesses, newTask: TTask) => ({ type: projectsActionTypes.ADD_TASK, payload: { projectForAddNewTask, processForAddNewTask, newTask } })
 export const editTaskDescAction = (projectForNewTaskDesc: TProject, processForNewTaskDesc: TProcesses, taskWithNewDesc: TTask, dataForNewTaskDesc: TTask) => ({ type: projectsActionTypes.EDIT_DESCRIPTION_TASK, payload: { projectForNewTaskDesc, processForNewTaskDesc, taskWithNewDesc, dataForNewTaskDesc } })
-export const removeTaskFromList = (projectForDeLTask: TProject, processForDelTask: TProcesses, taskForDelTask: TTask) => ({ type: projectsActionTypes.REMOVE_TASK_LIST, payload: { projectForDeLTask, processForDelTask, taskForDelTask } })
+export const removeTaskFromListaction = (projectForDeLTask: TProject, processForDelTask: TProcesses, taskForDelTask: TTask) => ({ type: projectsActionTypes.REMOVE_TASK_LIST, payload: { projectForDeLTask, processForDelTask, taskForDelTask } })
+export const visibleTitleAction = (projectForVisibleTitle: TProject, processForVisibleTitle: TProcesses, taskForVisibleTitle: TTask) => ({ type: projectsActionTypes.REMOVE_TASK_LIST, payload: { projectForVisibleTitle, processForVisibleTitle, taskForVisibleTitle } })

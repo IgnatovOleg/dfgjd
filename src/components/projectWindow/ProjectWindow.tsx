@@ -8,6 +8,7 @@ import { BiWindow } from 'react-icons/bi';
 import { removeProjectsAction } from "../../store/reducers/projectsReducer";
 import InfoProject from "../infoProject/InfoProject";
 import ProcessWindow from "../processWindow/ProcessWindow";
+import TaskExecutor from "../taskExecutor/TaskExecutor";
 
 
 
@@ -54,7 +55,7 @@ const ProjectWindow: React.FC<ProjectWindowProps> = ({ project }) => {
                         }
                     </div>
                 )}
-
+                <TaskExecutor/>
             </div>
         </div>
     )
