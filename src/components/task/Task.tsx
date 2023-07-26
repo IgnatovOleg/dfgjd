@@ -39,6 +39,7 @@ const Task: React.FC<TaskProps> = ({ project, process, task }) => {
     const visibleTitle = () => {
         dispatch(visibleTitleAction(project, process, task))
     }
+    
 
     return (
         <div className="taskContainer">
@@ -58,7 +59,7 @@ const Task: React.FC<TaskProps> = ({ project, process, task }) => {
                 </form>
             }
             <div className="btnTask">
-                <AiOutlineEdit className="btnStyle"/>
+                <AiOutlineEdit className="btnStyle" onClick={() => visibleTitle()}/>
                 <RiDeleteBin2Line className="btnStyle" onClick={() => removeTask()}/>
             </div>
         </div>

@@ -29,6 +29,7 @@ const Process: React.FC<IProcessProps> = ({ process, project, setSizeWindow, siz
         register,
         handleSubmit,
         formState: { errors },
+        reset
     } = useForm<DataForm>({
         mode: "onChange"
     })
@@ -49,6 +50,7 @@ const Process: React.FC<IProcessProps> = ({ process, project, setSizeWindow, siz
             return setSizeWindow(false)
         }
         setSizeWindow(true)
+        reset()
     }
 
     return (
