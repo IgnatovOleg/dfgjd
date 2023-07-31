@@ -21,19 +21,17 @@ const Authorization: React.FC = () => {
 
     const navigate = useNavigate()
 
-    const {users} = useSelector((state: RootState) => state.users)
-    
+    const { users } = useSelector((state: RootState) => state.users)
+
 
 
     const onSubmit = (data: TUsers) => {
-        for(let a of users) {
-            if(data.login === a.login && data.password === a.password) {
+        for (let a of users) {
+            if (data.login === a.login && data.password === a.password) {
                 navigate("/homePage")
-            } else if(users.length === 0){
-                alert("entered incorrect login or password or there is no such user")
-            } else {
-                alert("entered incorrect login or password or there is no such user")
+                break;
             }
+            alert("entered incorrect login or password or there is no such user")
         }
         reset()
     }

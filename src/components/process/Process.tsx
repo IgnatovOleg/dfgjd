@@ -53,6 +53,8 @@ const Process: React.FC<IProcessProps> = ({ process, project, setSizeWindow, siz
         reset()
     }
 
+    
+
     return (
         <div className="processContainer" onClick={(e) => activeProcess(e)}>
             <div className="titleProcess">

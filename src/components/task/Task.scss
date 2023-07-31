@@ -6,19 +6,23 @@
 
     h3 {
         word-break: break-all;
+        margin-top: 7px
     }
 
     .btnTask {
         display: flex;
         gap: 5px;
 
+
         .btnStyle {
             font-size: 20px;
             background: #c4dfe67e;
             padding: 8px;
             border-radius: 5px;
-            transition: 0.2s;
+            transition: 0.7s;
+            opacity: 0;
             cursor: pointer;
+            transform: translateX(100px);
         }
         .btnStyle:hover {
             background: #c4dfe6;
@@ -31,4 +35,10 @@
             transition: 0.2s ease;
         }
     }
+}
+.taskContainer:hover .btnStyle {
+    transform: translateX(0px);
+    opacity: 1;
+    transition: 1s;
+
 }

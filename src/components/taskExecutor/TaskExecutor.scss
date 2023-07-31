@@ -1,0 +1,17 @@
+.taskExecutorContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    padding: 0 10px;
+    width: 440px;
+    height: 529px;
+
+    border: 2px solid #003c4679;
+    border-radius: 15px;
+
+    .currentTaskList {
+        margin-top: 45px;
+    }
+}
