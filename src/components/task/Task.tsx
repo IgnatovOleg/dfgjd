@@ -5,6 +5,8 @@ import Input from "../input/Input"
 import { useForm } from "react-hook-form"
 import { AiOutlineEdit } from 'react-icons/ai';
 import { RiDeleteBin2Line } from 'react-icons/ri';
+import { MdOutlineKeyboardReturn } from 'react-icons/md';
+
 import { useDispatch } from "react-redux"
 import { editTaskDescAction, removeTaskFromListaction, visibleTitleAction,  } from "../../store/reducers/projectsReducer"
 
@@ -35,9 +37,11 @@ const Task: React.FC<TaskProps> = ({ project, process, task }) => {
     }
     const removeTask = () => {
         dispatch(removeTaskFromListaction(project, process, task))
+        reset()
     }
     const visibleTitle = () => {
         dispatch(visibleTitleAction(project, process, task))
+        reset()
     }
     
 
@@ -59,7 +63,10 @@ const Task: React.FC<TaskProps> = ({ project, process, task }) => {
                 </form>
             }
             <div className="btnTask">
-                <AiOutlineEdit className="btnStyle" onClick={() => visibleTitle()}/>
+            {task.visibleTitle
+                    ? <AiOutlineEdit className="btnStyle" onClick={() => visibleTitle()}/>
+                    : <MdOutlineKeyboardReturn className="btnStyle" onClick={() => visibleTitle()}/>
+                }
                 <RiDeleteBin2Line className="btnStyle" onClick={() => removeTask()}/>
             </div>
         </div>

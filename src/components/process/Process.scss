@@ -3,16 +3,20 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
+    overflow: hidden;
+
     border-bottom: 1px solid #003b46;
     margin: 10px 0;
     padding: 15px 10px;
-    max-width: 305px;
-    width: 100%;
+    width: 340px;
+
     transition: 0.5s;
     cursor: pointer;
 
     .titleProcess {
+        display: flex;
+        align-items: center;
+        height: 35px;
 
         h3 {
             word-break: break-all;
@@ -25,6 +29,9 @@
     .buttonsProcess {
         display: flex;
         gap: 5px;
+        transform: translateX(120px);
+        opacity: 0;
+        transition: 1s;
     }
 
     .btnStyle {
@@ -56,6 +63,11 @@
     border-radius: 15px;
     background-color: #c4dfe690;
     transition: 0.5s;
+}
+.processContainer:hover .buttonsProcess {
+    transform: translateX(0);
+    opacity: 1;
+    transition: 1s;
 }
 .processContainer:hover .btnStyle {
     color: #66a5ad;

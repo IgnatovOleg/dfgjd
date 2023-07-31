@@ -26,13 +26,16 @@ const Authorization: React.FC = () => {
 
 
     const onSubmit = (data: TUsers) => {
+        let userFound = false
+
         for (let a of users) {
             if (data.login === a.login && data.password === a.password) {
+                userFound = true;
                 navigate("/homePage")
                 break;
             }
-            alert("entered incorrect login or password or there is no such user")
         }
+        if (!userFound) alert("entered incorrect login or password or there is no such user")
         reset()
     }
 

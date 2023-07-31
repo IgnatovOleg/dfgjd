@@ -53,10 +53,6 @@ const ProjectWindow: React.FC<ProjectWindowProps> = ({ project }) => {
                             ? <ProcessWindow project={project} process={process}/>
                             : <div></div>
                         }
-                    </div>
-                )}
-                {project.processes.map(process =>
-                    <div className={process.is_active ? "processBlock" : "processNone"}>
                         {process.is_active
                             ? <TaskExecutor/>
                             : <div></div>
