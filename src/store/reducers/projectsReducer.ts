@@ -75,7 +75,7 @@ export const projectsReducer = (state = defaultState, action: actionTypes) => {
             arrayWithNewTaskList[currentProjectForDeLTask].processes[currentProcessForDeLTask].tasks = updatedTasks
             return { ...state, projects: arrayWithNewTaskList }
         default:
-            return { ...state }
+            return { ...state, djfgjkdfgjd }
     }
 }
 
