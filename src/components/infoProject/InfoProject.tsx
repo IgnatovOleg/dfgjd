@@ -35,7 +35,6 @@ const InfoProject: React.FC<InfoProjectProps> = ({ project, sizeWindow, setSizeW
     const renameProject = (data: DataForm) => {
         dispatch(removeProjectTitleAction(project, data))
         console.log(data, "data");
-        
         setTitleProject(true)
         reset()
     }

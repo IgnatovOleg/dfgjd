@@ -15,6 +15,7 @@ const HomePage: React.FC = () => {
     
     
     
+    
 
     const { projects } = useSelector((state: RootState) => state.projects)
 
