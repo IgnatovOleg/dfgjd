@@ -12,7 +12,7 @@ import "./InfoProject.scss";
 interface InfoProjectProps {
     project: TProject,
     sizeWindow: boolean,
-    setSizeWindow: (sizeWindow: boolean) => void
+    setSizeWindow: (sizeWindow: boolean) => void,
 }
 
 const InfoProject: React.FC<InfoProjectProps> = ({ project, sizeWindow, setSizeWindow }) => {

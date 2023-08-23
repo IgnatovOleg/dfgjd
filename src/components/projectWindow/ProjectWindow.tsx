@@ -14,14 +14,15 @@ import TaskExecutor from "../taskExecutor/TaskExecutor";
 
 interface ProjectWindowProps {
     project: TProject,
-
+    currentWindow: number | null,
+    setCurrentWindow:(currentWindow: number | null) => void
 }
 
 export type DataForm = {
     title: string
 }
 
-const ProjectWindow: React.FC<ProjectWindowProps> = ({ project }) => {
+const ProjectWindow: React.FC<ProjectWindowProps> = ({ project, currentWindow, setCurrentWindow }) => {
 
 
     const [sizeWindow, setSizeWindow] = useState<boolean>(false)
@@ -32,12 +33,33 @@ const ProjectWindow: React.FC<ProjectWindowProps> = ({ project }) => {
         dispatch(removeProjectsAction(project))
     }
     
+    const windowId = () => {
+        // currentWindow === project.id ? setCurrentWindow(project.id) : setCurrentWindow(project.id)
+        if(project.id !== currentWindow) {
+            setCurrentWindow(project.id)
+        } else {
+            setCurrentWindow(null)
+        }
+    }
 
+    const visibleWondows = () => {
+        if(sizeWindow === false) {
+            setCurrentWindow(null)
+        }
+    }
+
+    const windowsPosition = () => {
+        if(currentWindow === null) {
+            return { opacity: "1" }
+        } else {
+            return { opacity: "1"}
+        }
+    }
 
 
 
     return (
-        <div className={`projectWindowContainer ${sizeWindow ? "bigWindow" : ""}`}>
+        <div style={{ ...windowsPosition()}} className={`projectWindowContainer ${sizeWindow ? "bigWindow" : ""}`} onClick={() => windowId()}>
             <div className="windowControl">
                 {sizeWindow
                     ? <BiWindows className="smallIcon" onClick={() => setSizeWindow(false)} />
@@ -46,7 +68,7 @@ const ProjectWindow: React.FC<ProjectWindowProps> = ({ project }) => {
                 <RxCross2 className="smallIcon" onClick={() => removeProjects(project)} />
             </div>
             <div className="windowContant">
-                <InfoProject project={project} sizeWindow={sizeWindow} setSizeWindow={setSizeWindow} />
+                <InfoProject project={project} sizeWindow={sizeWindow} setSizeWindow={setSizeWindow}/>
                 {project.processes.map(process =>
                     <div className={process.is_active ? "processBlock" : "processNone"}>
                         {process.is_active

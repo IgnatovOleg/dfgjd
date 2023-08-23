@@ -14,6 +14,7 @@
         right: 20px;
         display: flex;
         gap: 5px;
+        z-index: 2;
     }
 
     .smallIcon {
@@ -28,21 +29,27 @@
         height: 100%;
         gap: 30px;
     }
+
     .windowContant::-webkit-scrollbar {
         display: none;
-      }
+    }
 
     .processBlock {
         display: flex;
         gap: 35px;
+        opacity: 1;
+        transition: 1s;
     }
+
     .processNone {
-        display: none;
+        opacity: 0;
+        transition: 1s;
+
     }
 }
 
 .bigWindow {
-    max-width: 1415px;
+    max-width: 1380px;
     width: 100%;
     transition: 0.5s ease-in-out;
 }
