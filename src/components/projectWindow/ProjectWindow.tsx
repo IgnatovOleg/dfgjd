@@ -54,7 +54,7 @@ const ProjectWindow: React.FC<ProjectWindowProps> = ({ project, currentWindow, s
 
 
     return (
-        <div style={windowsPosition() sdkgdfg } className={`projectWindowContainer ${sizeWindow ? "bigWindow" : ""}`} onClick={() => windowId()}>
+        <div style={windowsPosition()} className={`projectWindowContainer ${sizeWindow ? "bigWindow" : ""}`} onClick={() => windowId()}>
             <div className="windowControl">
                 {sizeWindow
                     ? <BiWindows className="smallIcon" onClick={() => setSizeWindow(false)} />
