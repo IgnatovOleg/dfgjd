@@ -5,11 +5,16 @@ import { MdSettings } from 'react-icons/md';
 import { BiSolidLeftArrow } from 'react-icons/bi';
 
 
-const UserMenu: React.FC = () => {
+interface UserMenuProps {
+    visibleProfileInfo: boolean,
+    setVisibleProfileInfo: (visibleProfileInfo: boolean) => void
+}
+
+
+const UserMenu: React.FC<UserMenuProps> = ({ visibleProfileInfo, setVisibleProfileInfo }) => {
 
     const [versionIconAboutMe, setVersionIconAboutMe] = useState<boolean>(false)
     const [versionIconSettings, setVersionIconSettings] = useState<boolean>(false)
-    const [positionArrowAboutMe, setPositionArrowAboutMe] = useState<boolean>(false)
     const [positionArrowSettings, setPositionArrowSettings] = useState<boolean>(false)
 
 
@@ -22,16 +27,27 @@ const UserMenu: React.FC = () => {
         setVersionIconAboutMe(false)
     }
 
+    const visibleSetting = () => {
+        setVisibleProfileInfo(false)
+    }
+
+
     return (
         <div className="userMenuContainer">
-            <div className="item" onMouseEnter={() => newIconAboutMe()} onClick={() => setPositionArrowAboutMe(!positionArrowAboutMe)}>
+            <div className="item"
+                onMouseEnter={() => newIconAboutMe()} onMouseLeave={() => setVersionIconAboutMe(false)}
+                onClick={() => setVisibleProfileInfo(!visibleProfileInfo)}
+            >
                 {versionIconAboutMe
-                    ? <BiSolidLeftArrow className={`svg ${positionArrowAboutMe ? "leftShift" : ""}`} />
+                    ? <BiSolidLeftArrow className={`svg ${visibleProfileInfo ? "leftShift" : ""}`} />
                     : <BsFillPeopleFill className="svg" />
                 }
                 <span>About me</span>
             </div>
-            <div className="item" onMouseEnter={() => newIconSetting()}>
+            <div className="item"
+                onMouseEnter={() => newIconSetting()} onMouseLeave={() => setVersionIconSettings(false)}
+                onClick={() => visibleSetting()}
+            >
                 {versionIconSettings
                     ? <BiSolidLeftArrow className={`svg ${positionArrowSettings ? "leftShift" : ""}`} />
                     : <MdSettings className="svg" />

@@ -1,22 +1,26 @@
 .additionalProfileInfoContainer {
     position: absolute;
-    top: 100px;
-    left: 20%;
+    top: 95px;
+    left: 23%;
 
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 50px;
 
-    padding: 50px 20px;
-    max-width: 880px;
-    width: max-content;
+    padding: 50px;
+    max-width: 700px;
+    width: 100%;
     z-index: 2;
 
     background: #66a5ad;
     border-radius: 20px;
+    transition: 1s;
+
 
     .firstInfo {
         display: flex;
+        width: 100%;
         gap: 70px;
 
         .photoUsers {
@@ -36,7 +40,7 @@
     .secondInfo {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-around;
+        justify-content: center;
         gap: 15px;
 
         .editInfo {
@@ -46,4 +50,8 @@
             width: max-content;
         }
     }
+    .opacityProfileInfo {
+        opacity: 0;
+    }
 }
+

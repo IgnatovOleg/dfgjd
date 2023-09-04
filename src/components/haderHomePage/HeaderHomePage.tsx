@@ -37,6 +37,11 @@ const HeaderHomePage: React.FC<HeaderHomePageProps> = ({ setVisibleModal, userMe
         navigate("/")
     }
 
+    const visibleUserMenu = () => {
+        setUserMenu(!userMenu)
+        setVisibleProfileInfo(false)
+    }
+
     return (
         <div className="headerHomePageContainer">
             <div className="logo">
@@ -51,18 +56,18 @@ const HeaderHomePage: React.FC<HeaderHomePageProps> = ({ setVisibleModal, userMe
                     {user.authorization
                         ? <div className={`user ${userMenu ? "userArrow" : ""}`}>
                             <h4>{user.firstName} {user.lastName}</h4>
-                            <BiDownArrow className={`arrow ${userMenu ? "arrowRotate" : ""}`} onClick={() => setUserMenu(!userMenu)}/>
+                            <BiDownArrow className={`arrow ${userMenu ? "arrowRotate" : ""}`} onClick={() => visibleUserMenu()} onMouseEnter={() => setUserMenu(true)}/>
                         </div>
                         : <div></div>
                     }
                 </div>
             )}
             {userMenu
-            ? <UserMenu/>
+            ? <UserMenu visibleProfileInfo={visibleProfileInfo} setVisibleProfileInfo={setVisibleProfileInfo}/>
             : <div></div>
             }
             {visibleProfileInfo
-            ? <AdditionalProfileInfo/>
+            ? <AdditionalProfileInfo visibleProfileInfo={visibleProfileInfo} setVisibleProfileInfo={setVisibleProfileInfo}/>
             : <div></div>
             }
             <MdOutlineExitToApp className="exitIcon" onClick={() => exit()} />

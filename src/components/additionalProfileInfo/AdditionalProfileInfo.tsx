@@ -3,13 +3,17 @@ import "./AdditionalProfileInfo.scss"
 
 import { BsPlusLg } from 'react-icons/bs';
 import Button from "../button/Button";
-import InfoField from "./infoField/InfoField";
 import { useForm } from "react-hook-form";
 import Input from "../input/Input";
 import { TUsers } from "../../types/typesUsersReducer";
 
+interface AdditionalProfileInfoProps {
+    visibleProfileInfo: boolean,
+    setVisibleProfileInfo: (visibleProfileInfo: boolean) => void
+}
 
-const AdditionalProfileInfo: React.FC = () => {
+
+const AdditionalProfileInfo: React.FC<AdditionalProfileInfoProps> = ({ visibleProfileInfo, setVisibleProfileInfo }) => {
 
     const { register,
         handleSubmit,
@@ -74,19 +78,6 @@ const AdditionalProfileInfo: React.FC = () => {
                             minLength: 5
                         })}
                         placeholder={"Edit your middle name"} />
-                </div>
-                <div className="editInfo">
-                    <h4>Login</h4>
-                    <Input
-                        register={register("login", {
-                            required: "Enter first name",
-                            pattern: {
-                                value: /^[а-яА-ЯёЁєЄїЇіІa-zA-Z]+$/,
-                                message: "Pleace enter valid first name",
-                            },
-                            minLength: 5
-                        })}
-                        placeholder={"Edit your name"} />
                 </div>
                 <div className="editInfo">
                     <h4>Your phone number</h4>

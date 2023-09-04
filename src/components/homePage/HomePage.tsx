@@ -20,9 +20,11 @@ const HomePage: React.FC = () => {
 
     return (
         <div className="homePageContainer">
-            <HeaderHomePage setVisibleModal={setVisibleModal}
+            <HeaderHomePage
+                setVisibleModal={setVisibleModal}
                 userMenu={userMenu} setUserMenu={setUserMenu}
-                visibleProfileInfo={visibleProfileInfo} setVisibleProfileInfo={setVisibleProfileInfo} />
+                visibleProfileInfo={visibleProfileInfo} setVisibleProfileInfo={setVisibleProfileInfo} 
+            />
             <div className={`contant ${visibleModal || userMenu ? "opacityContant" : ""}`}>
                 {projects.map(project => (
                     <ProjectWindow key={project.id} project={project} currentWindow={currentWindow} setCurrentWindow={setCurrentWindow} />

@@ -1,15 +1,15 @@
 .userMenuContainer {
     position: absolute;
     right: 7%;
-    top: 100px;
+    top: 95px;
     z-index: 3;
 
     display: flex;
-    justify-content: center;
     flex-direction: column;
+    justify-content: space-around;
     gap: 3px;
 
-    padding: 10px 15px;
+    padding: 20px 15px;
 
     background-color: #66a5ad;
     border-radius: 10px;
