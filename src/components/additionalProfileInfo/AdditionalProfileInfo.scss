@@ -1,17 +1,24 @@
 .additionalProfileInfoContainer {
+    position: absolute;
+    top: 100px;
+    left: 20%;
+
     display: flex;
     flex-direction: column;
     gap: 50px;
+
     padding: 50px 20px;
     max-width: 880px;
     width: max-content;
+    z-index: 2;
 
     background: #66a5ad;
+    border-radius: 20px;
 
     .firstInfo {
         display: flex;
         gap: 70px;
-        
+
         .photoUsers {
             max-width: 200px;
             border: 3px solid #003b46;
@@ -25,6 +32,7 @@
             }
         }
     }
+
     .secondInfo {
         display: flex;
         flex-wrap: wrap;

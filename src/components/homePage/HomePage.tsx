@@ -10,25 +10,26 @@ import "./HomePage.scss";
 const HomePage: React.FC = () => {
 
     const [visibleModal, setVisibleModal] = useState<boolean>(false)
+    const [userMenu, setUserMenu] = useState<boolean>(true)
+    const [visibleProfileInfo, setVisibleProfileInfo] = useState<boolean>(true)
+
     const [currentWindow, setCurrentWindow] = useState<number | null>(null)
-    console.log(currentWindow);
-    
-    
-    
-    
+
 
     const { projects } = useSelector((state: RootState) => state.projects)
 
     return (
         <div className="homePageContainer">
-            <HeaderHomePage setVisibleModal={setVisibleModal}/>
-            <div className={`contant ${visibleModal ? "opacityContant" : ""}`}>
+            <HeaderHomePage setVisibleModal={setVisibleModal}
+                userMenu={userMenu} setUserMenu={setUserMenu}
+                visibleProfileInfo={visibleProfileInfo} setVisibleProfileInfo={setVisibleProfileInfo} />
+            <div className={`contant ${visibleModal || userMenu ? "opacityContant" : ""}`}>
                 {projects.map(project => (
-                    <ProjectWindow key={project.id} project={project} currentWindow={currentWindow} setCurrentWindow={setCurrentWindow}/>
+                    <ProjectWindow key={project.id} project={project} currentWindow={currentWindow} setCurrentWindow={setCurrentWindow} />
                 ))}
             </div>
             {visibleModal
-                ? <ModalCreateProject setVisibleModal={setVisibleModal}/>
+                ? <ModalCreateProject setVisibleModal={setVisibleModal} />
                 : <div></div>
             }
         </div>

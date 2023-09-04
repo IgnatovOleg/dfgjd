@@ -1,0 +1,58 @@
+.userMenuContainer {
+    position: absolute;
+    right: 7%;
+    top: 100px;
+    z-index: 3;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 3px;
+
+    padding: 10px 15px;
+
+    background-color: #66a5ad;
+    border-radius: 10px;
+
+    .item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        font-weight: 500;
+        height: 30px;
+        overflow: hidden;
+
+        border-bottom: 1px solid black;
+        cursor: pointer;
+        transition: 1s;
+
+        .imageBox {
+            display: flex;
+            width: 35px;
+            gap: 5px;
+
+        }
+    }
+
+    .item:hover {
+        border-bottom: 1px solid #c4dfe6;
+        transition: 1s;
+    }
+
+    .item:hover .svg {
+        color: #c4dfe6;
+        transition: 1s;
+    }
+
+    .item:active span {
+        transform: translateY(2px);
+        transition: 0.4s;
+    }
+
+    .leftShift {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+
+}

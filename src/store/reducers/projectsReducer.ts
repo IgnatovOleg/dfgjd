@@ -19,6 +19,7 @@ export const projectsReducer = (state = defaultState, action: actionTypes) => {
             const { project, data } = action.payload
             const updatedProjects = state.projects.map((p) => p.id === project.id ? { ...p, title: data.title } : p);
             return { ...state, projects: updatedProjects }
+            
         case projectsActionTypes.ADD_PROCESS:
             const { obj, newProcess } = action.payload
             const currentIndexProject = state.projects.findIndex(p => p.id === obj.id)

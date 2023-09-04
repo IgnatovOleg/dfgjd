@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useForm } from 'react-hook-form';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { RootState } from "../../store";
-import { TUsers } from "../../types/typesUsersReducer";
+import { authorizationAction } from "../../store/reducers/usersReducer";
+import { Iusers, TUsers } from "../../types/typesUsersReducer";
 import Button from "../button/Button";
 import Input from "../input/Input";
 import "./Authorization.scss"
@@ -22,6 +23,10 @@ const Authorization: React.FC = () => {
     const navigate = useNavigate()
 
     const { users } = useSelector((state: RootState) => state.users)
+    console.log(users, "users");
+    
+
+    const dispatch = useDispatch()
 
 
 
@@ -31,6 +36,7 @@ const Authorization: React.FC = () => {
         for (let a of users) {
             if (data.login === a.login && data.password === a.password) {
                 userFound = true;
+                dispatch(authorizationAction(a))
                 navigate("/homePage")
                 break;
             }
