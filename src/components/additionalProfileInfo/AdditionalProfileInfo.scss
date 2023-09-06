@@ -41,13 +41,25 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        align-items: center;
         gap: 15px;
 
-        .editInfo {
+        form {
             display: flex;
-            flex-direction: column;
-            gap: 10px;
-            width: max-content;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 15px;
+
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h3 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 218px;
+            width: 100%;
         }
     }
     .opacityProfileInfo {

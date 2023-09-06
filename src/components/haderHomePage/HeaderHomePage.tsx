@@ -56,20 +56,34 @@ const HeaderHomePage: React.FC<HeaderHomePageProps> = ({ setVisibleModal, userMe
                     {user.authorization
                         ? <div className={`user ${userMenu ? "userArrow" : ""}`}>
                             <h4>{user.firstName} {user.lastName}</h4>
-                            <BiDownArrow className={`arrow ${userMenu ? "arrowRotate" : ""}`} onClick={() => visibleUserMenu()} onMouseEnter={() => setUserMenu(true)}/>
+                            <BiDownArrow className={`arrow ${userMenu ? "arrowRotate" : ""}`} onClick={() => visibleUserMenu()} onMouseEnter={() => setUserMenu(true)} />
                         </div>
                         : <div></div>
                     }
                 </div>
             )}
             {userMenu
-            ? <UserMenu visibleProfileInfo={visibleProfileInfo} setVisibleProfileInfo={setVisibleProfileInfo}/>
-            : <div></div>
+                ? <UserMenu visibleProfileInfo={visibleProfileInfo} setVisibleProfileInfo={setVisibleProfileInfo} />
+                : <div></div>
             }
-            {visibleProfileInfo
-            ? <AdditionalProfileInfo visibleProfileInfo={visibleProfileInfo} setVisibleProfileInfo={setVisibleProfileInfo}/>
-            : <div></div>
-            }
+            {users.map(user =>
+                <div>
+                    {user.authorization
+                        ? <div>
+                            {visibleProfileInfo
+                                ? <AdditionalProfileInfo user={user} />
+                                : <div></div>
+                            }
+                          </div>
+                        : <div></div>
+                    }
+                </div>
+            )}
+
+            {/* {visibleProfileInfo
+                ? <AdditionalProfileInfo users={users} />
+                : <div></div>
+            } */}
             <MdOutlineExitToApp className="exitIcon" onClick={() => exit()} />
         </div>
     )

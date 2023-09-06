@@ -21,11 +21,8 @@ const Authorization: React.FC = () => {
     });
 
     const navigate = useNavigate()
-
-    const { users } = useSelector((state: RootState) => state.users)
-    console.log(users, "users");
     
-
+    const { users } = useSelector((state: RootState) => state.users)
     const dispatch = useDispatch()
 
 

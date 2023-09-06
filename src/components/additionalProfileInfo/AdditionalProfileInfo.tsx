@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./AdditionalProfileInfo.scss"
 
 import { BsPlusLg } from 'react-icons/bs';
@@ -8,12 +8,11 @@ import Input from "../input/Input";
 import { TUsers } from "../../types/typesUsersReducer";
 
 interface AdditionalProfileInfoProps {
-    visibleProfileInfo: boolean,
-    setVisibleProfileInfo: (visibleProfileInfo: boolean) => void
+    user: TUsers
 }
 
 
-const AdditionalProfileInfo: React.FC<AdditionalProfileInfoProps> = ({ visibleProfileInfo, setVisibleProfileInfo }) => {
+const AdditionalProfileInfo: React.FC<AdditionalProfileInfoProps> = ({ user }) => {
 
     const { register,
         handleSubmit,
@@ -23,6 +22,17 @@ const AdditionalProfileInfo: React.FC<AdditionalProfileInfoProps> = ({ visiblePr
     } = useForm<TUsers>({
         mode: "onChange"
     });
+
+    const [firstNameEdit, setFirstNameEdit] = useState<boolean>(false)
+    const [lastNameEdit, setLastNameEdit] = useState<boolean>(false)
+    const [middletNameEdit, setMiddleNameEdit] = useState<boolean>(false)
+    const [phoneEdit, setPhoneEdit] = useState<boolean>(false)
+
+
+
+    const editInfo = (data: TUsers) => {
+        console.log(data, "data");
+    }
 
 
 
@@ -34,80 +44,71 @@ const AdditionalProfileInfo: React.FC<AdditionalProfileInfoProps> = ({ visiblePr
                 </div>
                 <div className="nameAndEmail">
                     <h1>Name persone</h1>
-                    <h2>Position</h2>
-                    <h4>Phone number</h4>
-                    <h4>Email address</h4>
+                    <h3>Phone number</h3>
+                    <h3>Email address</h3>
                 </div>
             </div>
             <div className="secondInfo">
-                <div className="editInfo">
-                    <h4>Name</h4>
-                    <Input
-                        register={register("firstName", {
-                            required: "Enter first name",
-                            pattern: {
-                                value: /^[а-яА-ЯёЁєЄїЇіІa-zA-Z]+$/,
-                                message: "Pleace enter valid first name",
-                            },
-                            minLength: 5
-                        })}
-                        placeholder={"Edit your name"} />
-                </div>
-                <div className="editInfo">
-                    <h4>Last Name</h4>
-                    <Input
-                        register={register("lastName", {
-                            required: "Enter last name",
-                            pattern: {
-                                value: /^[а-яА-ЯёЁєЄїЇіІa-zA-Z]+$/,
-                                message: "Pleace enter valid last name",
-                            },
-                            minLength: 5
-                        })}
-                        placeholder={"Edit your last name"} />
-                </div>
-                <div className="editInfo">
-                    <h4>Middle name</h4>
-                    <Input
-                        register={register("middleName", {
-                            required: "Enter middle name",
-                            pattern: {
-                                value: /^[а-яА-ЯёЁєЄїЇіІa-zA-Z]+$/,
-                                message: "Pleace enter valid middle name",
-                            },
-                            minLength: 5
-                        })}
-                        placeholder={"Edit your middle name"} />
-                </div>
-                <div className="editInfo">
-                    <h4>Your phone number</h4>
-                    <Input
-                        register={register("phone", {
-                            required: "Enter your phone",
-                            pattern: {
-                                value: /^[а-яА-ЯёЁєЄїЇіІa-zA-Z]+$/,
-                                message: "Pleace enter valid middle name",
-                            },
-                            minLength: 5
-                        })}
-                        placeholder={"Edit your phone"} />
-                </div>
-                <div className="editInfo">
-                    <h4>Your email</h4>
-                    <Input
-                        register={register("email", {
-                            required: "Enter your email",
-                            pattern: {
-                                value: /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/i,
-                                message: "Pleace enter valid middle name",
-                            },
-                            minLength: 5
-                        })}
-                        placeholder={"Edit your phone"} />
-                </div>
+                <form onSubmit={handleSubmit(editInfo)}>
+                    {firstNameEdit
+                        ? <Input
+                            register={register("firstName", {
+                                required: "Your first name?",
+                                pattern: {
+                                    value: /^[a-zA-Z0-9]+$/,
+                                    message: "Pleace enter valid first name",
+                                },
+                            })}
+                            typeInput="text"
+                            placeholder="Edit you first name" />
+                        : <h3 onClick={() => setFirstNameEdit(true)}>{user.firstName}</h3>
+                    }
+                    {lastNameEdit
+                        ? <Input
+                            register={register("lastName", {
+                                required: "Your last name?",
+                                pattern: {
+                                    value: /^[a-zA-Z0-9]+$/,
+                                    message: "Pleace enter valid last name",
+                                },
+                            })}
+                            typeInput="text"
+                            placeholder="Edit you last name" />
+                        : <h3>{user.lastName}</h3>
+
+                    }
+                    {middletNameEdit
+                        ? <Input
+                            register={register("middleName", {
+                                required: "Your first name?",
+                                pattern: {
+                                    value: /^[a-zA-Z0-9]+$/,
+                                    message: "Pleace enter valid first name",
+                                },
+                            })}
+                            typeInput="text"
+                            placeholder="Edit you middle name" />
+                        : <h3>{user.middleName}</h3>
+                    }
+                    {phoneEdit
+                        ? <Input
+                            register={register("phone", {
+                                required: "Your first name?",
+                                pattern: {
+                                    value: /^[a-zA-Z0-9]+$/,
+                                    message: "Pleace enter valid first name",
+                                },
+                            })}
+                            typeInput="tel"
+                            placeholder="Edit you phone"
+                        />
+                        : <h3>{user.phone}</h3>
+
+                    }
+                    <Button buttonName="Save changes" />
+                </form>
             </div>
-            <Button buttonName="Save changes" />
-        </div>
+        </div >
     )
 }
 
