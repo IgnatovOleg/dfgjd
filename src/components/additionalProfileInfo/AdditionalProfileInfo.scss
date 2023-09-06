@@ -4,8 +4,6 @@
     left: 23%;
 
     display: flex;
-    flex-direction: column;
-    align-items: center;
     gap: 50px;
 
     padding: 50px;
@@ -18,26 +16,20 @@
     transition: 1s;
 
 
-    .firstInfo {
-        display: flex;
-        width: 100%;
-        gap: 70px;
+    .photoUsers {
+        max-width: 200px;
+        border: 3px solid #003b46;
 
-        .photoUsers {
-            max-width: 200px;
-            border: 3px solid #003b46;
+        .addPhoto {
+            width: 140px;
+            height: 140px;
 
-            .addPhoto {
-                width: 140px;
-                height: 140px;
-
-                color: #66a5ad;
-                filter: drop-shadow(2px 0 0 #003b46) drop-shadow(-2px 0 0 #003b46) drop-shadow(0 -2px 0 #003b46) drop-shadow(0 2px 0 #003b46);
-            }
+            color: #66a5ad;
+            filter: drop-shadow(2px 0 0 #003b46) drop-shadow(-2px 0 0 #003b46) drop-shadow(0 -2px 0 #003b46) drop-shadow(0 2px 0 #003b46);
         }
     }
 
-    .secondInfo {
+    .info {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -46,24 +38,25 @@
 
         form {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            gap: 15px;
+            justify-content: space-between;
 
-            max-width: 500px;
             width: 100%;
+
+            h3 {
+                display: flex;
+                align-items: center;
+                height: 36px;
+                width: max-content;
+
+                cursor: pointer;
+
+            }
         }
 
-        h3 {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            max-width: 218px;
-            width: 100%;
-        }
     }
+
     .opacityProfileInfo {
         opacity: 0;
     }
-}
 
+}

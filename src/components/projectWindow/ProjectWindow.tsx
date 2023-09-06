@@ -41,10 +41,10 @@ const ProjectWindow: React.FC<ProjectWindowProps> = ({ project, currentWindow, s
         }
     }
 
-    const windowsPosition = () => {
-        if(currentWindow === null) {
+    const projectVisible = () => {
+        if(currentWindow === project.id) {
             return { opacity: "1" }
-        } else if(currentWindow === project.id) {
+        } else if(currentWindow === null) {
             return { opacity: "1" }
         } else {
             return { opacity: "0" }
@@ -54,7 +54,7 @@ const ProjectWindow: React.FC<ProjectWindowProps> = ({ project, currentWindow, s
 
 
     return (
-        <div style={windowsPosition()} className={`projectWindowContainer ${sizeWindow ? "bigWindow" : ""}`} onClick={() => windowId()}>
+        <div style={projectVisible()} className={`projectWindowContainer ${sizeWindow ? "bigWindow" : ""}`} onClick={() => windowId()}>
             <div className="windowControl">
                 {sizeWindow
                     ? <BiWindows className="smallIcon" onClick={() => setSizeWindow(false)} />
