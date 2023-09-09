@@ -79,11 +79,6 @@ const HeaderHomePage: React.FC<HeaderHomePageProps> = ({ setVisibleModal, userMe
                     }
                 </div>
             )}
-
-            {/* {visibleProfileInfo
-                ? <AdditionalProfileInfo users={users} />
-                : <div></div>
-            } */}
             <MdOutlineExitToApp className="exitIcon" onClick={() => exit()} />
         </div>
     )

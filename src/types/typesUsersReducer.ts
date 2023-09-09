@@ -24,7 +24,8 @@ export type TUsers = {
 export enum usersActionsTypes {
     ADD_USER = "ADD_USER",
     AUTHORIZATION_USER = "AUTHORIZATION_USER",
-    EXIT_USER = "EXIT_USER"
+    EXIT_USER = "EXIT_USER",
+    EDIT_USER_INFO = "EDIT_USER_INFO"
 }
 
 export type addUser = {
@@ -41,5 +42,12 @@ export type exitUser = {
     type: usersActionsTypes.EXIT_USER,
     payload: TUsers
 }
+export type exitUserInfo = {
+    type: usersActionsTypes.EDIT_USER_INFO,
+    payload: {
+        data: TUsers,
+        user: TUsers
+    }
+}
 
-export type actionTypesUsers = addUser | authorizationUser | exitUser
+export type actionTypesUsers = addUser | authorizationUser | exitUser | exitUserInfo

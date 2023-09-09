@@ -17,6 +17,7 @@ export const usersReducer = (state = defaultState, action: actionTypesUsers) => 
             return {
                 ...state, users: [...state.users, action.payload]
             }
+
         case usersActionsTypes.AUTHORIZATION_USER:
             const currentUserForAuthorization = state.users.findIndex(u => u.id === action.payload.id)
             const newArray = [...state.users]
@@ -27,6 +28,12 @@ export const usersReducer = (state = defaultState, action: actionTypesUsers) => 
             const newA = [...state.users]
             newA[currentUserForExit].authorization = false
             return { ...state, users: newA}
+
+        case usersActionsTypes.EDIT_USER_INFO:
+            const { data, user } = action.payload
+            const currentUserForeditInfo = state.users.findIndex(u => u.id)
+            const newArrayForEditInfo = [...state.users]
+            return { ...state }
         default:
             return { ...state }
     }
@@ -35,3 +42,4 @@ export const usersReducer = (state = defaultState, action: actionTypesUsers) => 
 export const addUserAction = (payload: TUsers) => ({ type: usersActionsTypes.ADD_USER, payload })
 export const authorizationAction = (payload: TUsers) => ({ type: usersActionsTypes.AUTHORIZATION_USER, payload })
 export const exitUserAction = (payload: TUsers) => ({ type: usersActionsTypes.EXIT_USER, payload })
+export const editUserInfoAction = (data: TUsers, user: TUsers) => ({type: usersActionsTypes.EDIT_USER_INFO, payload: {data, user}})

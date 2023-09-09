@@ -6,6 +6,8 @@ import Button from "../button/Button";
 import { useForm } from "react-hook-form";
 import Input from "../input/Input";
 import { TUsers } from "../../types/typesUsersReducer";
+import { useDispatch } from "react-redux";
+import { editUserInfoAction } from "../../store/reducers/usersReducer";
 
 interface AdditionalProfileInfoProps {
     user: TUsers
@@ -29,10 +31,18 @@ const AdditionalProfileInfo: React.FC<AdditionalProfileInfoProps> = ({ user }) =
     const [phoneEdit, setPhoneEdit] = useState<boolean>(false)
     const [emailEdit, setEmailEdit] = useState<boolean>(false)
 
+    const deispatch = useDispatch()
+
 
 
     const editInfo = (data: TUsers) => {
         console.log(data, "data");
+        deispatch(editUserInfoAction(data, user))
+        setFirstNameEdit(false)
+        setLastNameEdit(false)
+        setMiddleNameEdit(false)
+        setPhoneEdit(false)
+        setEmailEdit(false)
     }
 
 
@@ -69,7 +79,7 @@ const AdditionalProfileInfo: React.FC<AdditionalProfileInfoProps> = ({ user }) =
                                 })}
                                 typeInput="text"
                                 placeholder="Edit you last name" />
-                            : <h3 title="Click me for edit information">{user.lastName}</h3>
+                            : <h3 title="Click me for edit information" onClick={() => setLastNameEdit(true)}>{user.lastName}</h3>
 
                         }
                         {middletNameEdit
@@ -83,7 +93,7 @@ const AdditionalProfileInfo: React.FC<AdditionalProfileInfoProps> = ({ user }) =
                                 })}
                                 typeInput="text"
                                 placeholder="Edit you middle name" />
-                            : <h3 title="Click me for edit information">{user.middleName}</h3>
+                            : <h3 title="Click me for edit information" onClick={() => setMiddleNameEdit(true)}>{user.middleName}</h3>
                         }
                     </div>
                     <div>
@@ -99,7 +109,7 @@ const AdditionalProfileInfo: React.FC<AdditionalProfileInfoProps> = ({ user }) =
                                 typeInput="tel"
                                 placeholder="Edit you phone"
                             />
-                            : <h3 title="Click me for edit information">{user.phone}</h3>
+                            : <h3 title="Click me for edit information" onClick={() => setPhoneEdit(true)}>{user.phone}</h3>
                         }
                         {emailEdit
                             ? <Input
@@ -111,7 +121,7 @@ const AdditionalProfileInfo: React.FC<AdditionalProfileInfoProps> = ({ user }) =
                                     },
                                     minLength: 5,
                                 })} />
-                            : <h3 title="Click me for edit information">{user.email}</h3>
+                            : <h3 title="Click me for edit information" onClick={() => setEmailEdit(true)}>{user.email}</h3>
                         }
                     </div>
                 </form>
