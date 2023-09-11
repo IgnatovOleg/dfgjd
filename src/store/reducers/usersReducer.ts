@@ -33,11 +33,12 @@ export const usersReducer = (state = defaultState, action: actionTypesUsers) => 
             const { data, user } = action.payload
             const currentUserForeditInfo = state.users.findIndex(u => u.id === user.id)
             const newArrayForEditInfo = [...state.users]
-            newArrayForEditInfo[currentUserForeditInfo].firstName = data.firstName ?  newArrayForEditInfo[currentUserForeditInfo].firstName = data.firstName : newArrayForEditInfo[currentUserForeditInfo].firstName
-            newArrayForEditInfo[currentUserForeditInfo].lastName = data.lastName ?  newArrayForEditInfo[currentUserForeditInfo].lastName = data.lastName : newArrayForEditInfo[currentUserForeditInfo].lastName
-            newArrayForEditInfo[currentUserForeditInfo].middleName = data.middleName ?  newArrayForEditInfo[currentUserForeditInfo].middleName = data.middleName : newArrayForEditInfo[currentUserForeditInfo].middleName
-            newArrayForEditInfo[currentUserForeditInfo].phone = data.phone ?  newArrayForEditInfo[currentUserForeditInfo].phone = data.phone : newArrayForEditInfo[currentUserForeditInfo].phone
-            newArrayForEditInfo[currentUserForeditInfo].email = data.email ?  newArrayForEditInfo[currentUserForeditInfo].email = data.email : newArrayForEditInfo[currentUserForeditInfo].email
+            newArrayForEditInfo[currentUserForeditInfo].firstName = data.firstName || newArrayForEditInfo[currentUserForeditInfo].firstName
+            newArrayForEditInfo[currentUserForeditInfo].lastName = data.lastName || newArrayForEditInfo[currentUserForeditInfo].lastName
+            newArrayForEditInfo[currentUserForeditInfo].middleName = data.middleName ||  newArrayForEditInfo[currentUserForeditInfo].middleName
+            newArrayForEditInfo[currentUserForeditInfo].phone = data.phone ||  newArrayForEditInfo[currentUserForeditInfo].phone 
+            newArrayForEditInfo[currentUserForeditInfo].email = data.email ||  newArrayForEditInfo[currentUserForeditInfo].email
+
             return { ...state, users: newArrayForEditInfo }
         default:
             return { ...state }
