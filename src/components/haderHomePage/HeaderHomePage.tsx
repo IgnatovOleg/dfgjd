@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./HeaderHomePage.scss";
 import Button from "../button/Button";
 import { BsTrello } from 'react-icons/bs';
@@ -10,17 +10,21 @@ import { exitUserAction } from "../../store/reducers/usersReducer";
 import { BiDownArrow } from 'react-icons/bi';
 import UserMenu from "../userMenu/UserMenu";
 import AdditionalProfileInfo from "../additionalProfileInfo/AdditionalProfileInfo";
+import AccountSettings from "../accountSettings/AccountSettings";
 
 interface HeaderHomePageProps {
     setVisibleModal: (visibleModal: boolean) => void,
     userMenu: boolean,
     setUserMenu: (userMenu: boolean) => void,
-    visibleProfileInfo: boolean,
-    setVisibleProfileInfo: (visibleProfileInfo: boolean) => void
 }
 
 
-const HeaderHomePage: React.FC<HeaderHomePageProps> = ({ setVisibleModal, userMenu, setUserMenu, visibleProfileInfo, setVisibleProfileInfo }) => {
+const HeaderHomePage: React.FC<HeaderHomePageProps> = ({ setVisibleModal, userMenu, setUserMenu }) => {
+
+    const [visibleProfileInfo, setVisibleProfileInfo] = useState<boolean>(false)
+    const [visibleAccountSettings, setVisibleAccountSettings] = useState<boolean>(false)
+    console.log(visibleAccountSettings, "visibleAccountSettings");
+    
 
 
     const navigate = useNavigate()
@@ -40,6 +44,7 @@ const HeaderHomePage: React.FC<HeaderHomePageProps> = ({ setVisibleModal, userMe
     const visibleUserMenu = () => {
         setUserMenu(!userMenu)
         setVisibleProfileInfo(false)
+        setVisibleAccountSettings(false)
     }
 
     return (
@@ -63,7 +68,8 @@ const HeaderHomePage: React.FC<HeaderHomePageProps> = ({ setVisibleModal, userMe
                 </div>
             )}
             {userMenu
-                ? <UserMenu visibleProfileInfo={visibleProfileInfo} setVisibleProfileInfo={setVisibleProfileInfo} />
+                ? <UserMenu visibleProfileInfo={visibleProfileInfo} setVisibleProfileInfo={setVisibleProfileInfo}
+                            visibleAccountSettings={visibleAccountSettings} setVisibleAccountSettings={setVisibleAccountSettings} />
                 : <div></div>
             }
             {users.map(user =>
@@ -74,7 +80,20 @@ const HeaderHomePage: React.FC<HeaderHomePageProps> = ({ setVisibleModal, userMe
                                 ? <AdditionalProfileInfo user={user} />
                                 : <div></div>
                             }
-                          </div>
+                        </div>
+                        : <div></div>
+                    }
+                </div>
+            )}
+            {users.map(user =>
+                <div>
+                    {user.authorization
+                        ? <div>
+                            {visibleAccountSettings
+                                ? <AccountSettings user={user}/>
+                                : <div></div>
+                            }
+                        </div>
                         : <div></div>
                     }
                 </div>

@@ -50,9 +50,11 @@
         transition: 0.4s;
     }
 
-    .leftShift {
-        transform: translateX(-20px);
-        opacity: 0;
-    }
 
+
+}
+
+.leftShift {
+    transform: translateX(-20px);
+    opacity: 0;
 }

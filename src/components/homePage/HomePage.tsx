@@ -11,7 +11,6 @@ const HomePage: React.FC = () => {
 
     const [visibleModal, setVisibleModal] = useState<boolean>(false)
     const [userMenu, setUserMenu] = useState<boolean>(true)
-    const [visibleProfileInfo, setVisibleProfileInfo] = useState<boolean>(true)
 
     const [currentWindow, setCurrentWindow] = useState<number | null>(null)
 
@@ -23,7 +22,6 @@ const HomePage: React.FC = () => {
             <HeaderHomePage
                 setVisibleModal={setVisibleModal}
                 userMenu={userMenu} setUserMenu={setUserMenu}
-                visibleProfileInfo={visibleProfileInfo} setVisibleProfileInfo={setVisibleProfileInfo} 
             />
             <div className={`contant ${visibleModal || userMenu ? "opacityContant" : ""}`}>
                 {projects.map(project => (

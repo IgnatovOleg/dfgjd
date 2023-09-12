@@ -7,15 +7,16 @@ import { BiSolidLeftArrow } from 'react-icons/bi';
 
 interface UserMenuProps {
     visibleProfileInfo: boolean,
-    setVisibleProfileInfo: (visibleProfileInfo: boolean) => void
+    setVisibleProfileInfo: (visibleProfileInfo: boolean) => void,
+    visibleAccountSettings: boolean,
+    setVisibleAccountSettings: (visibleAccountSettings: boolean) => void
 }
 
 
-const UserMenu: React.FC<UserMenuProps> = ({ visibleProfileInfo, setVisibleProfileInfo }) => {
+const UserMenu: React.FC<UserMenuProps> = ({ visibleProfileInfo, setVisibleProfileInfo, visibleAccountSettings, setVisibleAccountSettings }) => {
 
     const [versionIconAboutMe, setVersionIconAboutMe] = useState<boolean>(false)
     const [versionIconSettings, setVersionIconSettings] = useState<boolean>(false)
-    const [positionArrowSettings, setPositionArrowSettings] = useState<boolean>(false)
 
 
     const newIconAboutMe = () => {
@@ -26,9 +27,14 @@ const UserMenu: React.FC<UserMenuProps> = ({ visibleProfileInfo, setVisibleProfi
         setVersionIconSettings(true)
         setVersionIconAboutMe(false)
     }
+    const visibleInfo = () => {
+        setVisibleAccountSettings(false)
+        setVisibleProfileInfo(!visibleProfileInfo)
+    }
 
-    const visibleSetting = () => {
+    const visibleSettings = () => {
         setVisibleProfileInfo(false)
+        setVisibleAccountSettings(!visibleAccountSettings)
     }
 
 
@@ -36,7 +42,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ visibleProfileInfo, setVisibleProfi
         <div className="userMenuContainer">
             <div className="item"
                 onMouseEnter={() => newIconAboutMe()} onMouseLeave={() => setVersionIconAboutMe(false)}
-                onClick={() => setVisibleProfileInfo(!visibleProfileInfo)}
+                onClick={() => visibleInfo()}
             >
                 {versionIconAboutMe
                     ? <BiSolidLeftArrow className={`svg ${visibleProfileInfo ? "leftShift" : ""}`} />
@@ -46,10 +52,10 @@ const UserMenu: React.FC<UserMenuProps> = ({ visibleProfileInfo, setVisibleProfi
             </div>
             <div className="item"
                 onMouseEnter={() => newIconSetting()} onMouseLeave={() => setVersionIconSettings(false)}
-                onClick={() => visibleSetting()}
+                onClick={() => visibleSettings()}
             >
                 {versionIconSettings
-                    ? <BiSolidLeftArrow className={`svg ${positionArrowSettings ? "leftShift" : ""}`} />
+                    ? <BiSolidLeftArrow className={`svg ${visibleAccountSettings ? "leftShift" : ""}`} />
                     : <MdSettings className="svg" />
                 }
                 <span>Settings</span>
