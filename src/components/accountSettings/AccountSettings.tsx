@@ -13,7 +13,7 @@ const AccountSettings: React.FC<AccountSettingsProps> = ({user}) => {
 
     return(
         <div className="accountSettingsContainer">
-            <h2>Account Settings</h2>
+            <h2>Account settings</h2>
             <Button buttonName="Edit login"/>
             <Button buttonName="Edit password"/>
         </div>
