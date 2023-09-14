@@ -31,13 +31,13 @@ const AdditionalProfileInfo: React.FC<AdditionalProfileInfoProps> = ({ user }) =
     const [phoneEdit, setPhoneEdit] = useState<boolean>(false)
     const [emailEdit, setEmailEdit] = useState<boolean>(false)
 
-    const deispatch = useDispatch()
+    const dispatch = useDispatch()
 
 
 
     const editInfo = (data: TUsers) => {
         console.log(data, "data");
-        deispatch(editUserInfoAction(data, user))
+        dispatch(editUserInfoAction(data, user))
         setFirstNameEdit(false)
         setLastNameEdit(false)
         setMiddleNameEdit(false)

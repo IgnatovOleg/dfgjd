@@ -16,5 +16,51 @@
     background: #66a5ad;
     border-radius: 20px;
     transition: 1s;
-    
+
+    form {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+
+        .editSettings {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            overflow: hidden;
+
+            padding: 20px 0;
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+
+            transition: 1s;
+
+
+            .error {
+                position: absolute;
+                font-size: 12px;
+                color: rgb(230, 0, 0);
+                font-weight: 700;
+            }
+
+            .errorLogin {
+                top: 209px;
+            }
+
+            .errorPassword {
+                bottom: 114px;
+            }
+
+            .errorConfPass {
+                bottom: 57px;
+            }
+        }
+
+        .notVisible {
+            display: none;
+            transition: 1s;
+        }
+    }
+
 }

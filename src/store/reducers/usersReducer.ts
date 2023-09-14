@@ -38,7 +38,9 @@ export const usersReducer = (state = defaultState, action: actionTypesUsers) => 
             newArrayForEditInfo[currentUserForeditInfo].middleName = data.middleName ||  newArrayForEditInfo[currentUserForeditInfo].middleName
             newArrayForEditInfo[currentUserForeditInfo].phone = data.phone ||  newArrayForEditInfo[currentUserForeditInfo].phone 
             newArrayForEditInfo[currentUserForeditInfo].email = data.email ||  newArrayForEditInfo[currentUserForeditInfo].email
-
+            newArrayForEditInfo[currentUserForeditInfo].login = data.login ||  newArrayForEditInfo[currentUserForeditInfo].login
+            newArrayForEditInfo[currentUserForeditInfo].password = data.password ||  newArrayForEditInfo[currentUserForeditInfo].password
+            newArrayForEditInfo[currentUserForeditInfo].confirmPassword = data.confirmPassword ||  newArrayForEditInfo[currentUserForeditInfo].confirmPassword
             return { ...state, users: newArrayForEditInfo }
         default:
             return { ...state }

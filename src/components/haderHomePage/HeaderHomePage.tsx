@@ -12,6 +12,7 @@ import UserMenu from "../userMenu/UserMenu";
 import AdditionalProfileInfo from "../additionalProfileInfo/AdditionalProfileInfo";
 import AccountSettings from "../accountSettings/AccountSettings";
 
+
 interface HeaderHomePageProps {
     setVisibleModal: (visibleModal: boolean) => void,
     userMenu: boolean,
@@ -23,7 +24,6 @@ const HeaderHomePage: React.FC<HeaderHomePageProps> = ({ setVisibleModal, userMe
 
     const [visibleProfileInfo, setVisibleProfileInfo] = useState<boolean>(false)
     const [visibleAccountSettings, setVisibleAccountSettings] = useState<boolean>(false)
-    console.log(visibleAccountSettings, "visibleAccountSettings");
     
 
 

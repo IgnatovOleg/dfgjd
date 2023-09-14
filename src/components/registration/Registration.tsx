@@ -30,7 +30,7 @@ const Registration: React.FC = () => {
         const newUser: TUsers = { id: Date.now(), ...data }
         dispatch(addUserAction(newUser))
         navigate("/")
-        // reset()
+        reset()
     }
     const password = watch("password");
 
