@@ -10,9 +10,9 @@ import "./HomePage.scss";
 const HomePage: React.FC = () => {
 
     const [visibleModal, setVisibleModal] = useState<boolean>(false)
-    const [userMenu, setUserMenu] = useState<boolean>(true)
-
+    const [userMenu, setUserMenu] = useState<boolean>(false)
     const [currentWindow, setCurrentWindow] = useState<number | null>(null)
+    
 
 
     const { projects } = useSelector((state: RootState) => state.projects)

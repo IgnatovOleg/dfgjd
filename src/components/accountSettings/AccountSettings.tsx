@@ -33,19 +33,17 @@ const AccountSettings: React.FC<AccountSettingsProps> = ({ user }) => {
     });
 
 
+
     const editLogin = (data: TUsers) => {
         dispatch(editUserInfoAction(data, user))
         setVisibleEditLogin(false)
         reset()
     }
+    const password = watch("password")
+    
     const editPassword = (data: TUsers) => {
         console.log(data, "data");
-        
-        dispatch(editUserInfoAction(data, user))
-        setVisibleEditPassword(false)
-        reset()
     }
-    const password = watch("password");
 
 
     return (
@@ -88,7 +86,6 @@ const AccountSettings: React.FC<AccountSettingsProps> = ({ user }) => {
                         register={register("confirmPassword", {
                             required: "Confirm the password",
                             validate: (value) => value === password || "Passwords do not match",
-
                         })}
                         placeholder={"Confirm new password"}
                         typeInput="password" />

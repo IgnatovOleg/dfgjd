@@ -15,13 +15,12 @@ import { BsFillPeopleFill } from 'react-icons/bs';
 interface IProcessProps {
     process: TProcesses,
     project: TProject,
-    sizeWindow: boolean,
-    setSizeWindow: (sizeWindow: boolean) => void
+    newSize: () => void
 }
 
 
 
-const Process: React.FC<IProcessProps> = ({ process, project, setSizeWindow, sizeWindow }) => {
+const Process: React.FC<IProcessProps> = ({ process, project, newSize }) => {
 
     const [titleProcess, setTitleProcess] = useState<boolean>(false)
 
@@ -47,13 +46,9 @@ const Process: React.FC<IProcessProps> = ({ process, project, setSizeWindow, siz
     }
 
     const activeProcess = (e: React.MouseEvent) => {
-        if (e.target instanceof HTMLInputElement) { return }
+        if (e.target instanceof HTMLInputElement) return
         dispatch(activeProcessAction(project, process))
-        if(process.is_active) {
-            return setSizeWindow(false)
-        }
-        setSizeWindow(true)
-        reset()
+        newSize()
     }
 
     

@@ -4,7 +4,8 @@ import { actionTypes, projectsActionTypes, TProcesses, TProject, TProjects, TTas
 
 const defaultState: TProjects = {
     projects: [
-        {id: 1, title: "Mock1", processes: [{id: 2, title: "mock2", tasks: [{id: 3, title: "mock3", visibleTitle: false}], is_active: false}],}
+        {id: 1, title: "Mock1", processes: [{id: 2, title: "mock1.2", tasks: [{id: 3, title: "mock1.3", visibleTitle: false}], is_active: false}]},
+        {id: 2, title: "Mock2", processes: [{id: 2, title: "mock2.2", tasks: [{id: 3, title: "mock2.3", visibleTitle: false}], is_active: false}]}
     ]
 }
 

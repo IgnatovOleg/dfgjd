@@ -35,7 +35,6 @@ const HeaderHomePage: React.FC<HeaderHomePageProps> = ({ setVisibleModal, userMe
         for (let a of users) {
             if (a.authorization) {
                 dispatch(exitUserAction(a))
-                console.log(a, "a");
             }
         }
         navigate("/")

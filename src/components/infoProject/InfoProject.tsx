@@ -11,11 +11,10 @@ import "./InfoProject.scss";
 
 interface InfoProjectProps {
     project: TProject,
-    sizeWindow: boolean,
-    setSizeWindow: (sizeWindow: boolean) => void,
+    newSize: () => void
 }
 
-const InfoProject: React.FC<InfoProjectProps> = ({ project, sizeWindow, setSizeWindow }) => {
+const InfoProject: React.FC<InfoProjectProps> = ({ project, newSize }) => {
 
     const [titleProject, setTitleProject] = useState<boolean>(true)
 
@@ -34,7 +33,6 @@ const InfoProject: React.FC<InfoProjectProps> = ({ project, sizeWindow, setSizeW
 
     const renameProject = (data: DataForm) => {
         dispatch(removeProjectTitleAction(project, data))
-        console.log(data, "data");
         setTitleProject(true)
         reset()
     }
@@ -75,7 +73,7 @@ const InfoProject: React.FC<InfoProjectProps> = ({ project, sizeWindow, setSizeW
             </div>
             <div className="processesContainer">
                 {project.processes.map(process =>
-                    <Process process={process} project={project} sizeWindow={sizeWindow} setSizeWindow={setSizeWindow}/>
+                    <Process process={process} project={project} newSize={newSize} />
                 )}
             </div>
         </div>
