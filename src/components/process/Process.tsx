@@ -15,12 +15,13 @@ import { BsFillPeopleFill } from 'react-icons/bs';
 interface IProcessProps {
     process: TProcesses,
     project: TProject,
-    newSize: () => void
+    newSizeForClickOnProcess: (process: TProcesses) => void,
+    setSizeWindow: (sizeWindow: boolean) => void
 }
 
 
 
-const Process: React.FC<IProcessProps> = ({ process, project, newSize }) => {
+const Process: React.FC<IProcessProps> = ({ process, project, newSizeForClickOnProcess, setSizeWindow }) => {
 
     const [titleProcess, setTitleProcess] = useState<boolean>(false)
 
@@ -48,10 +49,10 @@ const Process: React.FC<IProcessProps> = ({ process, project, newSize }) => {
     const activeProcess = (e: React.MouseEvent) => {
         if (e.target instanceof HTMLInputElement) return
         dispatch(activeProcessAction(project, process))
-        newSize()
+        newSizeForClickOnProcess(process)
     }
 
-    
+
 
     return (
         <div className="processContainer" onClick={(e) => activeProcess(e)}>
@@ -76,12 +77,12 @@ const Process: React.FC<IProcessProps> = ({ process, project, newSize }) => {
                 }
             </div>
             <div className="buttonsProcess" onClick={(e) => e.stopPropagation()}>
-                <BsFillPeopleFill className="btnStyle"/>
+                <BsFillPeopleFill className="btnStyle" />
                 {titleProcess
                     ? <AiOutlineEdit className="btnStyle" onClick={() => setTitleProcess(false)} />
-                    : <MdOutlineKeyboardReturn className="btnStyle" onClick={() => setTitleProcess(true)}/>
+                    : <MdOutlineKeyboardReturn className="btnStyle" onClick={() => setTitleProcess(true)} />
                 }
-                
+
                 <RiDeleteBin2Line className="btnStyle" onClick={() => removeProcessList(project, process)} />
             </div>
         </div>

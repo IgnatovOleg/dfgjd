@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { TProject } from "../../types/typesProjectsReducer";
+import { TProcesses, TProject } from "../../types/typesProjectsReducer";
 import "./ProjectWindow.scss";
 import { RxCross2 } from 'react-icons/rx';
 import { useDispatch } from "react-redux";
 import { BiWindows } from 'react-icons/bi';
 import { BiWindow } from 'react-icons/bi';
-import { activeProcessAction, removeProjectsAction } from "../../store/reducers/projectsReducer";
+import { removeProjectsAction } from "../../store/reducers/projectsReducer";
 import InfoProject from "../infoProject/InfoProject";
 import ProcessWindow from "../processWindow/ProcessWindow";
 import TaskExecutor from "../taskExecutor/TaskExecutor";
@@ -36,7 +36,20 @@ const ProjectWindow: React.FC<ProjectWindowProps> = ({ project, currentWindow, s
         dispatch(removeProjectsAction(project))
     }
 
-    const newSize = () => {
+    const newSizeForClickOnProcess = (process?: TProcesses, e?: React.MouseEvent) => {
+
+        if (currentWindow === project.id) {
+            if (process?.is_active) {
+                setCurrentWindow(null)
+                setSizeWindow(false)
+            }
+        } else {
+            setCurrentWindow(project.id)
+            setSizeWindow(true)
+        }
+    }
+
+    const newSizeForClickonIcon = () => {
         currentWindow === project.id ? setCurrentWindow(null) : setCurrentWindow(project.id)
         setSizeWindow(!sizeWindow)
     }
@@ -56,15 +69,15 @@ const ProjectWindow: React.FC<ProjectWindowProps> = ({ project, currentWindow, s
         <div style={projectVisible()} className={`projectWindowContainer ${sizeWindow ? "bigWindow" : ""}`} >
             <div className="windowControl">
                 {sizeWindow
-                    ? <BiWindows className="smallIcon" onClick={() => newSize()} />
-                    : <BiWindow className="smallIcon" onClick={() => newSize()} />
+                    ? <BiWindows className="smallIcon" onClick={() => newSizeForClickonIcon()} />
+                    : <BiWindow className="smallIcon" onClick={() => newSizeForClickonIcon()} />
                 }
                 <RxCross2 className="smallIcon" onClick={() => removeProjects(project)} />
             </div>
             <div className="windowContant">
-                <InfoProject project={project} newSize={newSize} />
+                <InfoProject project={project} newSizeForClickOnProcess={newSizeForClickOnProcess} setSizeWindow={setSizeWindow} />
                 {project.processes.map(process =>
-                    <div className={process.is_active ? "processBlock" : "processNone"}>
+                    <div className={process.is_active && sizeWindow ? "processBlock" : "processNone"}>
                         {process.is_active
                             ? <ProcessWindow project={project} process={process} />
                             : <div></div>
