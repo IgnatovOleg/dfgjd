@@ -5,7 +5,7 @@ import { RxCross2 } from 'react-icons/rx';
 import { useDispatch } from "react-redux";
 import { BiWindows } from 'react-icons/bi';
 import { BiWindow } from 'react-icons/bi';
-import { removeProjectsAction } from "../../store/reducers/projectsReducer";
+import { noProcessesActiveAction, removeProjectsAction } from "../../store/reducers/projectsReducer";
 import InfoProject from "../infoProject/InfoProject";
 import ProcessWindow from "../processWindow/ProcessWindow";
 import TaskExecutor from "../taskExecutor/TaskExecutor";
@@ -52,6 +52,7 @@ const ProjectWindow: React.FC<ProjectWindowProps> = ({ project, currentWindow, s
     const newSizeForClickonIcon = () => {
         currentWindow === project.id ? setCurrentWindow(null) : setCurrentWindow(project.id)
         setSizeWindow(!sizeWindow)
+        dispatch(noProcessesActiveAction(project))
     }
 
     const projectVisible = () => {
