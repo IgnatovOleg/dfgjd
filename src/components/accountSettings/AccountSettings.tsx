@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TUsers } from "../../types/typesUsersReducer";
 import "./AccountSettings.scss"
 import Button from "../button/Button";
@@ -19,10 +19,6 @@ const AccountSettings: React.FC<AccountSettingsProps> = ({ user }) => {
 
     const dispatch = useDispatch()
 
-
-
-
-
     const { register,
         handleSubmit,
         formState: { errors },
@@ -40,7 +36,7 @@ const AccountSettings: React.FC<AccountSettingsProps> = ({ user }) => {
         reset()
     }
     const password = watch("password")
-    
+
     const editPassword = (data: TUsers) => {
         console.log(data, "data");
     }
@@ -50,25 +46,25 @@ const AccountSettings: React.FC<AccountSettingsProps> = ({ user }) => {
         <div className="accountSettingsContainer">
             <h2>Account settings</h2>
             <Button buttonName={visibleEditLogin ? "Cancel edit" : "Edit login"} click={() => setVisibleEditLogin(!visibleEditLogin)} />
-            <form onSubmit={handleSubmit(editLogin)}>
-                <div className={`editSettings ${visibleEditLogin ? "" : "notVisible"}`}>
+            <div className={`editSettings ${visibleEditLogin ? "" : "notVisible"}`}>
+                <form onSubmit={handleSubmit(editLogin)}>
                     <Input
                         register={register("login", {
                             required: "Your login?",
-                            pattern: {
-                                value: /^[a-zA-Z0-9]+$/,
-                                message: "Pleace enter valid login a-zA-Z0-9",
-                            },
+                            // pattern: {
+                            //     value: /^[a-zA-Z0-9]+$/,
+                            //     message: "Pleace enter valid login a-zA-Z0-9",
+                            // },
                         })}
                         placeholder={"Enter new login?"}
                         typeInput="text"
                     />
                     {errors?.login && (<div className="error errorLogin">{errors.login.message}</div>)}
-                </div>
-            </form>
+                </form>
+            </div>
             <Button buttonName={visibleEditPassword ? "Cancel edit" : "Edit password"} click={() => setVisibleEditPassword(!visibleEditPassword)} />
-            <form onSubmit={handleSubmit(editPassword)}>
-                <div className={`editSettings ${visibleEditPassword ? "" : "notVisible"}`}>
+            <div className={`editSettings ${visibleEditPassword ? "" : "notVisible"}`}>
+                {/* <form onSubmit={handleSubmit(editPassword)}>
                     <Input
                         register={register("password", {
                             required: "Enter password",
@@ -79,19 +75,19 @@ const AccountSettings: React.FC<AccountSettingsProps> = ({ user }) => {
                             minLength: 5
                         })}
                         placeholder={"Enter new password"}
-                        typeInput="password" />
+                    />
 
                     {errors?.password && (<div className="error errorPassword">{errors.password.message}</div>)}
                     <Input
                         register={register("confirmPassword", {
                             required: "Confirm the password",
-                            validate: (value) => value === password || "Passwords do not match",
+                            validate: (value) => value === password || "asfasdafasd"
                         })}
                         placeholder={"Confirm new password"}
-                        typeInput="password" />
+                    />
                     {errors?.confirmPassword && (<div className="error errorConfPass">{errors.confirmPassword.message}</div>)}
-                </div >
-            </form>
+                </form> */}
+            </div >
         </div >
     )
 }

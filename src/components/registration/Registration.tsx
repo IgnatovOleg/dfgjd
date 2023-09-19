@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { RootState } from "../../store";
 import { addUserAction } from "../../store/reducers/usersReducer";
-import { TUsers } from "../../types/typesUsersReducer";
+import { TExecutorTasks, TUsers } from "../../types/typesUsersReducer";
 import Button from "../button/Button";
 import Input from "../input/Input";
 import "./Registration.scss"
@@ -27,7 +27,8 @@ const Registration: React.FC = () => {
     });
 
     const onSubmit = (data: TUsers): void => {
-        const newUser: TUsers = { id: Date.now(), ...data }
+        const executorTasks: TExecutorTasks = { currentTasks: [], plannedTasks: [], complatedTasks: [] }
+        const newUser: TUsers = { id: Date.now(), ...data, executorTasks }
         dispatch(addUserAction(newUser))
         navigate("/")
         reset()

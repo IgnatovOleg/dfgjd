@@ -17,28 +17,29 @@
     border-radius: 20px;
     transition: 1s;
 
-    form {
+
+    .editSettings {
         display: flex;
-        align-items: center;
         flex-direction: column;
         gap: 20px;
 
-        .editSettings {
+        overflow: hidden;
+
+        padding: 20px 0;
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+
+        transition: 1s;
+
+        form {
             display: flex;
+            align-items: center;
             flex-direction: column;
             gap: 20px;
 
-            overflow: hidden;
-
-            padding: 20px 0;
-            border-top: 1px solid black;
-            border-bottom: 1px solid black;
-
-            transition: 1s;
-
-
             .error {
                 position: absolute;
+                left: 200px;
                 font-size: 12px;
                 color: rgb(230, 0, 0);
                 font-weight: 700;
@@ -57,10 +58,10 @@
             }
         }
 
-        .notVisible {
-            display: none;
-            transition: 1s;
-        }
     }
-
+    
+    .notVisible {
+        display: none;
+        transition: 1s;
+    }
 }

@@ -11,6 +11,7 @@ import { BiDownArrow } from 'react-icons/bi';
 import UserMenu from "../userMenu/UserMenu";
 import AdditionalProfileInfo from "../additionalProfileInfo/AdditionalProfileInfo";
 import AccountSettings from "../accountSettings/AccountSettings";
+import { TUsers } from "../../types/typesUsersReducer";
 
 
 interface HeaderHomePageProps {
@@ -24,11 +25,11 @@ const HeaderHomePage: React.FC<HeaderHomePageProps> = ({ setVisibleModal, userMe
 
     const [visibleProfileInfo, setVisibleProfileInfo] = useState<boolean>(false)
     const [visibleAccountSettings, setVisibleAccountSettings] = useState<boolean>(false)
-    
+
 
 
     const navigate = useNavigate()
-    const { users } = useSelector((state: RootState) => state.users)
+    const { users } = useSelector((state: RootState) => state.users) as { users: TUsers[] }
     const dispatch = useDispatch()
 
     const exit = () => {
@@ -68,7 +69,7 @@ const HeaderHomePage: React.FC<HeaderHomePageProps> = ({ setVisibleModal, userMe
             )}
             {userMenu
                 ? <UserMenu visibleProfileInfo={visibleProfileInfo} setVisibleProfileInfo={setVisibleProfileInfo}
-                            visibleAccountSettings={visibleAccountSettings} setVisibleAccountSettings={setVisibleAccountSettings} />
+                    visibleAccountSettings={visibleAccountSettings} setVisibleAccountSettings={setVisibleAccountSettings} />
                 : <div></div>
             }
             {users.map(user =>
@@ -89,7 +90,7 @@ const HeaderHomePage: React.FC<HeaderHomePageProps> = ({ setVisibleModal, userMe
                     {user.authorization
                         ? <div>
                             {visibleAccountSettings
-                                ? <AccountSettings user={user}/>
+                                ? <AccountSettings user={user} />
                                 : <div></div>
                             }
                         </div>

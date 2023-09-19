@@ -21,6 +21,7 @@ export type TTask = {
     visibleTitle: boolean
 }
 
+
 export enum projectsActionTypes {
     ADD_PROJECTS = "ADD_PROJECTS",
     REMOVE_PROJECTS = "REMOVE_PROJECTS",

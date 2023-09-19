@@ -26,7 +26,6 @@ const ProjectWindow: React.FC<ProjectWindowProps> = ({ project, currentWindow, s
 
 
     const [sizeWindow, setSizeWindow] = useState<boolean>(false)
-    console.log(currentWindow, "currentWindow");
 
 
 

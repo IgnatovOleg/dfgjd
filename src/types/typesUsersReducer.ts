@@ -1,4 +1,5 @@
 import { type } from "os"
+import { TTask } from "./typesProjectsReducer"
 
 
 export interface Iusers {
@@ -8,14 +9,20 @@ export interface Iusers {
 export type TUsers = {
     id?: number,
     login?: string,
-    password?: string,
-    confirmPassword?: string,
+    password: string,
+    confirmPassword: string,
     firstName?: string,
     lastName?: string,
     middleName?: string,
     email?: string,
     phone?: string,
-    authorization?: boolean
+    authorization?: boolean,
+    executorTasks?: TExecutorTasks
+}
+export type TExecutorTasks = {
+    currentTasks: TTask[],
+    plannedTasks: TTask[],
+    complatedTasks: TTask[]
 }
 
 
