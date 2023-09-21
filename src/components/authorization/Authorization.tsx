@@ -22,7 +22,7 @@ const Authorization: React.FC = () => {
 
     const navigate = useNavigate()
     
-    const { users } = useSelector((state: RootState) => state.users)
+    const { users } = useSelector((state: RootState) => state.users) as { users: TUsers[]}
     const dispatch = useDispatch()
 
 

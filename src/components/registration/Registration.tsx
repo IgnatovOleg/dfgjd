@@ -9,6 +9,7 @@ import { TExecutorTasks, TUsers } from "../../types/typesUsersReducer";
 import Button from "../button/Button";
 import Input from "../input/Input";
 import "./Registration.scss"
+import { TTask } from "../../types/typesProjectsReducer";
 
 
 const Registration: React.FC = () => {
@@ -27,7 +28,9 @@ const Registration: React.FC = () => {
     });
 
     const onSubmit = (data: TUsers): void => {
-        const executorTasks: TExecutorTasks = { currentTasks: [], plannedTasks: [], complatedTasks: [] }
+        const executorTasks: TExecutorTasks[] = [
+            { currentTasks: [], plannedTasks: [], completedTasks: [] }
+        ];
         const newUser: TUsers = { id: Date.now(), ...data, executorTasks }
         dispatch(addUserAction(newUser))
         navigate("/")

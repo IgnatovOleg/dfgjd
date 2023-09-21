@@ -17,12 +17,12 @@ export type TUsers = {
     email?: string,
     phone?: string,
     authorization?: boolean,
-    executorTasks?: TExecutorTasks
+    executorTasks?: TExecutorTasks[]
 }
 export type TExecutorTasks = {
     currentTasks: TTask[],
     plannedTasks: TTask[],
-    complatedTasks: TTask[]
+    completedTasks: TTask[]
 }
 
 
