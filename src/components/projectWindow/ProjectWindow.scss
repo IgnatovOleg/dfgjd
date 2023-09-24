@@ -23,10 +23,39 @@
     }
 
     .windowContant {
+        position: relative;
         display: flex;
         justify-content: space-around;
         overflow: hidden;
         gap: 30px;
+
+    }
+
+    .userChoice {
+        position: absolute;
+        top: 40%;
+        left: 25%;
+
+        max-width: max-content;
+        width: 100%;
+        padding: 10px 20px;
+
+
+        background: #c4dfe6;
+        border-radius: 20px;
+        transition: 1s;
+
+    }
+    .userChoiceActive {
+        left: 10%;
+    }
+    .userChoiceNone {
+        display: none;
+    }
+
+    .windowContantOpacity {
+        opacity: 0.1;
+        transition: 1s;
     }
 
     .windowContantCenter {
@@ -61,6 +90,7 @@
     height: 570px;
     transition: 0.5s;
 }
+
 .opacity {
     opacity: 0;
 }

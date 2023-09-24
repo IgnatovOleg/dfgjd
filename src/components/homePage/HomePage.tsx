@@ -23,7 +23,7 @@ const HomePage: React.FC = () => {
                 setVisibleModal={setVisibleModal}
                 userMenu={userMenu} setUserMenu={setUserMenu}
             />
-            <div className={`contant ${visibleModal || userMenu ? "opacityContant" : ""}`}>
+            <div className={`contant ${visibleModal || userMenu  ? "opacityContant" : ""}`}>
                 {projects.map(project => (
                     <ProjectWindow key={project.id} project={project} currentWindow={currentWindow} setCurrentWindow={setCurrentWindow} />
                 ))}

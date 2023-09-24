@@ -12,10 +12,12 @@ import "./InfoProject.scss";
 interface InfoProjectProps {
     project: TProject,
     newSizeForClickOnProcess: (process: TProcesses) => void,
-    setSizeWindow: (sizeWindow: boolean) => void
+    setSizeWindow: (sizeWindow: boolean) => void,
+    visibleUserChoice: boolean,
+    setVisibleUserChoice: (visibleUserChoice: boolean) => void
 }
 
-const InfoProject: React.FC<InfoProjectProps> = ({ project, newSizeForClickOnProcess, setSizeWindow }) => {
+const InfoProject: React.FC<InfoProjectProps> = ({ project, newSizeForClickOnProcess, setSizeWindow, visibleUserChoice, setVisibleUserChoice }) => {
 
     const [titleProject, setTitleProject] = useState<boolean>(true)
 
@@ -65,7 +67,7 @@ const InfoProject: React.FC<InfoProjectProps> = ({ project, newSizeForClickOnPro
                                 })}
                             />
                         </form>
-                            <Button buttonName={"Cencel"} click={() => setTitleProject(true)} />
+                        <Button buttonName={"Cencel"} click={() => setTitleProject(true)} />
                     </div>
                 }
             </div>
@@ -74,7 +76,9 @@ const InfoProject: React.FC<InfoProjectProps> = ({ project, newSizeForClickOnPro
             </div>
             <div className="processesContainer">
                 {project.processes.map(process =>
-                    <Process process={process} project={project} newSizeForClickOnProcess={newSizeForClickOnProcess} setSizeWindow={setSizeWindow}/>
+                    <Process process={process} project={project} newSizeForClickOnProcess={newSizeForClickOnProcess} setSizeWindow={setSizeWindow}
+                             visibleUserChoice={visibleUserChoice} setVisibleUserChoice={setVisibleUserChoice}
+                    />
                 )}
             </div>
         </div>

@@ -9,6 +9,7 @@ import { noProcessesActiveAction, removeProjectsAction } from "../../store/reduc
 import InfoProject from "../infoProject/InfoProject";
 import ProcessWindow from "../processWindow/ProcessWindow";
 import TaskExecutor from "../taskExecutor/TaskExecutor";
+import UserChoice from "../userChoice/UserChoice";
 
 
 
@@ -26,6 +27,8 @@ const ProjectWindow: React.FC<ProjectWindowProps> = ({ project, currentWindow, s
 
 
     const [sizeWindow, setSizeWindow] = useState<boolean>(false)
+    const [visibleUserChoice, setVisibleUserChoice] = useState<boolean>(false)
+
 
 
 
@@ -74,8 +77,10 @@ const ProjectWindow: React.FC<ProjectWindowProps> = ({ project, currentWindow, s
                 }
                 <RxCross2 className="smallIcon" onClick={() => removeProjects(project)} />
             </div>
-            <div className="windowContant">
-                <InfoProject project={project} newSizeForClickOnProcess={newSizeForClickOnProcess} setSizeWindow={setSizeWindow} />
+            <div className={`windowContant ${visibleUserChoice ? "windowContantOpacity" : ""}`}>
+                <InfoProject project={project} newSizeForClickOnProcess={newSizeForClickOnProcess} setSizeWindow={setSizeWindow}
+                    visibleUserChoice={visibleUserChoice} setVisibleUserChoice={setVisibleUserChoice}
+                />
                 {project.processes.map(process =>
                     <div className={process.is_active && sizeWindow ? "processBlock" : "processNone"}>
                         {process.is_active
@@ -88,6 +93,12 @@ const ProjectWindow: React.FC<ProjectWindowProps> = ({ project, currentWindow, s
                         }
                     </div>
                 )}
+            </div>
+            <div className={`userChoice ${visibleUserChoice ? "" : "userChoiceNone"} ${sizeWindow ? "userChoiceActive" : ""}`}>
+                {visibleUserChoice
+                    ? <UserChoice visibleUserChoice={visibleUserChoice} setVisibleUserChoice={setVisibleUserChoice}/>
+                    : <div></div>
+                }
             </div>
         </div>
     )

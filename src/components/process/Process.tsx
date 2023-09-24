@@ -16,12 +16,14 @@ interface IProcessProps {
     process: TProcesses,
     project: TProject,
     newSizeForClickOnProcess: (process: TProcesses) => void,
-    setSizeWindow: (sizeWindow: boolean) => void
+    setSizeWindow: (sizeWindow: boolean) => void,
+    visibleUserChoice: boolean,
+    setVisibleUserChoice: (visibleUserChoice: boolean) => void
 }
 
 
 
-const Process: React.FC<IProcessProps> = ({ process, project, newSizeForClickOnProcess, setSizeWindow }) => {
+const Process: React.FC<IProcessProps> = ({ process, project, newSizeForClickOnProcess, setSizeWindow, visibleUserChoice, setVisibleUserChoice }) => {
 
     const [titleProcess, setTitleProcess] = useState<boolean>(false)
 
@@ -77,7 +79,7 @@ const Process: React.FC<IProcessProps> = ({ process, project, newSizeForClickOnP
                 }
             </div>
             <div className="buttonsProcess" onClick={(e) => e.stopPropagation()}>
-                <BsFillPeopleFill className="btnStyle" />
+                <BsFillPeopleFill className="btnStyle" onClick={() => setVisibleUserChoice(!visibleUserChoice)}/>
                 {titleProcess
                     ? <AiOutlineEdit className="btnStyle" onClick={() => setTitleProcess(false)} />
                     : <MdOutlineKeyboardReturn className="btnStyle" onClick={() => setTitleProcess(true)} />
