@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { assignProcessAction } from "../../store/reducers/usersReducer";
@@ -8,7 +8,7 @@ import "./UserChoice.scss"
 
 interface UserChoiceProps {
     visibleUserChoice: boolean,
-    setVisibleUserChoice: (visibleUserChoice: boolean) => void
+    setVisibleUserChoice: (visibleUserChoice: boolean) => void,
 }
 
 
@@ -25,7 +25,9 @@ const UserChoice: React.FC<UserChoiceProps> = ({ visibleUserChoice, setVisibleUs
         for (let a of projects) {
             for (let b of a.processes) {
                 if (b.is_active) {
-                    console.log("win");
+                    dispatch(assignProcessAction(b.title, user))
+                    console.log(user, "user");
+                    
                 }
             }
         }
@@ -37,9 +39,7 @@ const UserChoice: React.FC<UserChoiceProps> = ({ visibleUserChoice, setVisibleUs
     return (
         <div className="userChoiceContainer">
             {users.map(user =>
-                <div onClick={() => assignToUser(user)}>
-                    <h4 >{user.firstName} {user.lastName}</h4>
-                </div>
+                <h4 onClick={() => assignToUser(user)}>{user.firstName} {user.lastName}</h4>
             )}
         </div>
     )

@@ -81,7 +81,10 @@ const Process: React.FC<IProcessProps> = ({ process, project, newSizeForClickOnP
                 }
             </div>
             <div className="buttonsProcess" onClick={(e) => e.stopPropagation()}>
-                <BsFillPeopleFill className="btnStyle" onClick={() => setVisibleUserChoice(!visibleUserChoice)}/>
+                {process.is_active
+                    ? <BsFillPeopleFill className="btnStyle" onClick={() => setVisibleUserChoice(!visibleUserChoice)} />
+                    : <div></div>
+                }
                 {titleProcess
                     ? <AiOutlineEdit className="btnStyle" onClick={() => setTitleProcess(false)} />
                     : <MdOutlineKeyboardReturn className="btnStyle" onClick={() => setTitleProcess(true)} />
@@ -89,7 +92,7 @@ const Process: React.FC<IProcessProps> = ({ process, project, newSizeForClickOnP
 
                 <RiDeleteBin2Line className="btnStyle" onClick={() => removeProcessList(project, process)} />
             </div>
-            
+
         </div>
     )
 }
