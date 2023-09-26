@@ -57,6 +57,7 @@
         color: rgb(230, 0, 0);
         font-weight: 700;
     }
+
 }
 
 .processContainer:hover {
@@ -64,11 +65,13 @@
     background-color: #c4dfe690;
     transition: 0.5s;
 }
+
 .processContainer:hover .buttonsProcess {
     transform: translateX(0);
     opacity: 1;
     transition: 1s;
 }
+
 .processContainer:hover .btnStyle {
     color: #66a5ad;
     transition: 0.5s;

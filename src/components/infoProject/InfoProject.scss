@@ -41,6 +41,7 @@
     .processesContainer {
         height: 420px;
         overflow-y: auto;
+        overflow-x:hidden
     }
     .processesContainer::-webkit-scrollbar {
         display: none;

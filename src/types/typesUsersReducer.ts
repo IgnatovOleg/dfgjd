@@ -17,6 +17,7 @@ export type TUsers = {
     email?: string,
     phone?: string,
     authorization?: boolean,
+    executorProcess?: string,
     executorTasks?: TExecutorTasks[]
 }
 export type TExecutorTasks = {
@@ -32,7 +33,10 @@ export enum usersActionsTypes {
     ADD_USER = "ADD_USER",
     AUTHORIZATION_USER = "AUTHORIZATION_USER",
     EXIT_USER = "EXIT_USER",
-    EDIT_USER_INFO = "EDIT_USER_INFO"
+
+    EDIT_USER_INFO = "EDIT_USER_INFO",
+
+    ASSIGN_PROCESS = "ASSIGN_PROCESS",
 }
 
 export type addUser = {
@@ -57,4 +61,12 @@ export type exitUserInfo = {
     }
 }
 
-export type actionTypesUsers = addUser | authorizationUser | exitUser | exitUserInfo
+export type asignProcess = {
+    type: usersActionsTypes.ASSIGN_PROCESS,
+    payload: {
+        processTitle: string,
+        userForAssignProcess: TUsers
+    }
+}
+
+export type actionTypesUsers = addUser | authorizationUser | exitUser | exitUserInfo | asignProcess

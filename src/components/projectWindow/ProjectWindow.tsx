@@ -78,7 +78,8 @@ const ProjectWindow: React.FC<ProjectWindowProps> = ({ project, currentWindow, s
                 <RxCross2 className="smallIcon" onClick={() => removeProjects(project)} />
             </div>
             <div className={`windowContant ${visibleUserChoice ? "windowContantOpacity" : ""}`}>
-                <InfoProject project={project} newSizeForClickOnProcess={newSizeForClickOnProcess} setSizeWindow={setSizeWindow}
+                <InfoProject project={project} newSizeForClickOnProcess={newSizeForClickOnProcess}
+                    sizeWindow={sizeWindow} setSizeWindow={setSizeWindow}
                     visibleUserChoice={visibleUserChoice} setVisibleUserChoice={setVisibleUserChoice}
                 />
                 {project.processes.map(process =>
@@ -96,7 +97,7 @@ const ProjectWindow: React.FC<ProjectWindowProps> = ({ project, currentWindow, s
             </div>
             <div className={`userChoice ${visibleUserChoice ? "" : "userChoiceNone"} ${sizeWindow ? "userChoiceActive" : ""}`}>
                 {visibleUserChoice
-                    ? <UserChoice visibleUserChoice={visibleUserChoice} setVisibleUserChoice={setVisibleUserChoice}/>
+                    ? <UserChoice visibleUserChoice={visibleUserChoice} setVisibleUserChoice={setVisibleUserChoice} />
                     : <div></div>
                 }
             </div>

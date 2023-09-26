@@ -10,12 +10,14 @@ import { AiOutlineEdit } from 'react-icons/ai';
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import { MdOutlineKeyboardReturn } from 'react-icons/md';
 import { BsFillPeopleFill } from 'react-icons/bs';
+import UserChoice from "../userChoice/UserChoice";
 
 
 interface IProcessProps {
     process: TProcesses,
     project: TProject,
     newSizeForClickOnProcess: (process: TProcesses) => void,
+    sizeWindow: boolean,
     setSizeWindow: (sizeWindow: boolean) => void,
     visibleUserChoice: boolean,
     setVisibleUserChoice: (visibleUserChoice: boolean) => void
@@ -23,7 +25,7 @@ interface IProcessProps {
 
 
 
-const Process: React.FC<IProcessProps> = ({ process, project, newSizeForClickOnProcess, setSizeWindow, visibleUserChoice, setVisibleUserChoice }) => {
+const Process: React.FC<IProcessProps> = ({ process, project, newSizeForClickOnProcess, sizeWindow, setSizeWindow, visibleUserChoice, setVisibleUserChoice }) => {
 
     const [titleProcess, setTitleProcess] = useState<boolean>(false)
 
@@ -87,6 +89,7 @@ const Process: React.FC<IProcessProps> = ({ process, project, newSizeForClickOnP
 
                 <RiDeleteBin2Line className="btnStyle" onClick={() => removeProcessList(project, process)} />
             </div>
+            
         </div>
     )
 }
