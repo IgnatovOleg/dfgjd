@@ -1,6 +1,4 @@
-import { type } from "os"
 import { TTask } from "./typesProjectsReducer"
-
 
 export interface Iusers {
     users: TUsers[]
@@ -18,12 +16,13 @@ export type TUsers = {
     phone?: string,
     authorization?: boolean,
     executorProcess?: string,
-    executorTasks?: TExecutorTasks[]
+    currentTasks?: TExecutorTasks[],
+    plannedTasks?: TExecutorTasks[],
+    complatedTasks?: TExecutorTasks[],
 }
 export type TExecutorTasks = {
-    currentTasks: TTask[],
-    plannedTasks: TTask[],
-    completedTasks: TTask[]
+        title?: string,
+        items?: TTask[]
 }
 
 
@@ -41,7 +40,7 @@ export enum usersActionsTypes {
 
 export type addUser = {
     type: usersActionsTypes.ADD_USER,
-    payload: Partial<TUsers> 
+    payload: Partial<TUsers>
 }
 
 export type authorizationUser = {

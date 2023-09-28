@@ -1,4 +1,5 @@
 import React from "react"
+import { TTask } from "../../types/typesProjectsReducer"
 import { TUsers } from "../../types/typesUsersReducer"
 import "./TaskExecutor.scss"
 
@@ -7,6 +8,7 @@ interface TaskExecutorProps {
 }
 
 const TaskExecutor: React.FC<TaskExecutorProps> = ({ user, }) => {
+
 
     return (
         <div className="taskExecutorContainer">

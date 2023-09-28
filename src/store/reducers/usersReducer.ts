@@ -1,11 +1,14 @@
-import { actionTypesUsers, addUser, Iusers, TUsers, usersActionsTypes } from "../../types/typesUsersReducer"
+import { current } from "@reduxjs/toolkit"
+import { actionTypesUsers, Iusers, TUsers, usersActionsTypes } from "../../types/typesUsersReducer"
 
 const defaultState: Iusers = {
     users: [
         {
-            id: 1, login: "ignatovoleg", password: "ignatovOleg!", confirmPassword: "ignatovOleg!", firstName: "Oleg", lastName: "Ignatov", middleName: "Volodimirovich", email: "08623.ignatovoleg@gmail.com", phone: "380934352419", authorization: true, executorProcess: "", executorTasks: [{ currentTasks: [], plannedTasks: [], completedTasks: [] }]},
-        { id: 2, login: "savchenkoserhiy", password: "savchenkoSerhiy!", confirmPassword: "savchenkoSerhiy!", firstName: "Serhiy", lastName: "Savchenko", middleName: "Anatolievich", email: "08623.ignatovoleg@gmail.com", phone: "38095432830", authorization: false, executorProcess: "" },
-        { id: 3, login: "ignatovaVika", password: "ignatovaVika!", confirmPassword: "ignatovaVika!", firstName: "Vika", lastName: "Ignatova", middleName: "Olexandrovna", email: "08623.ignatovoleg@gmail.com", phone: "380934352419", authorization: false, executorProcess: "" },
+            id: 1, login: "ignatovoleg", password: "ignatovOleg!", confirmPassword: "ignatovOleg!", firstName: "Oleg", lastName: "Ignatov", middleName: "Volodimirovich", email: "08623.ignatovoleg@gmail.com", phone: "380934352419", authorization: true,
+            executorProcess: "", currentTasks: [{ title: "Current Tasks", items: [] }], plannedTasks: [{ title: "Current Tasks", items: [] }], complatedTasks: [{ title: "Current Tasks", items: [] }]
+        },
+        // { id: 2, login: "savchenkoserhiy", password: "savchenkoSerhiy!", confirmPassword: "savchenkoSerhiy!", firstName: "Serhiy", lastName: "Savchenko", middleName: "Anatolievich", email: "08623.ignatovoleg@gmail.com", phone: "38095432830", authorization: false, executorProcess: "" },
+        // { id: 3, login: "ignatovaVika", password: "ignatovaVika!", confirmPassword: "ignatovaVika!", firstName: "Vika", lastName: "Ignatova", middleName: "Olexandrovna", email: "08623.ignatovoleg@gmail.com", phone: "380934352419", authorization: false, executorProcess: "" },
     ]
 }
 

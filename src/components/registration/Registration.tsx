@@ -29,10 +29,10 @@ const Registration: React.FC = () => {
 
     const onSubmit = (data: TUsers): void => {
         const executorProcess: string = ""
-        const executorTasks: TExecutorTasks[] = [
-            { currentTasks: [], plannedTasks: [], completedTasks: [] }
-        ];
-        const newUser: TUsers = { id: Date.now(), ...data, executorProcess, executorTasks }
+        const currentTasks: TExecutorTasks[] = [{title: "Current Tasks", items: []}]
+        const plannedTasks: TExecutorTasks[] = [{title: "Planned Tasks", items: []}]
+        const complatedTasks: TExecutorTasks[] = [{title: "Complated Tasks", items: []}]
+        const newUser: TUsers = { id: Date.now(), ...data, executorProcess, currentTasks, plannedTasks, complatedTasks }
         dispatch(addUserAction(newUser))
         navigate("/")
         reset()
