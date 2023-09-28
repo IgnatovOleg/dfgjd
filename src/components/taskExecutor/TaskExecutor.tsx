@@ -1,16 +1,18 @@
-import react from "react"
+import React from "react"
+import { TUsers } from "../../types/typesUsersReducer"
 import "./TaskExecutor.scss"
 
+interface TaskExecutorProps {
+    user: TUsers
+}
 
-const TaskExecutor = () => {
-
-
+const TaskExecutor: React.FC<TaskExecutorProps> = ({ user, }) => {
 
     return (
         <div className="taskExecutorContainer">
             <div className="executorInfo">
                 <img src="" alt="" />
-                <h3>Executor Name</h3>
+                <h3>{user.firstName} {user.lastName}</h3>
             </div>
             <div className="currentTaskList">
                 <h3>Current Task List:</h3>

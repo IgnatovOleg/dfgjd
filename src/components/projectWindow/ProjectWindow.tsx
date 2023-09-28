@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { TProcesses, TProject } from "../../types/typesProjectsReducer";
 import "./ProjectWindow.scss";
 import { RxCross2 } from 'react-icons/rx';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BiWindows } from 'react-icons/bi';
 import { BiWindow } from 'react-icons/bi';
 import { noProcessesActiveAction, removeProjectsAction } from "../../store/reducers/projectsReducer";
@@ -10,6 +10,8 @@ import InfoProject from "../infoProject/InfoProject";
 import ProcessWindow from "../processWindow/ProcessWindow";
 import TaskExecutor from "../taskExecutor/TaskExecutor";
 import UserChoice from "../userChoice/UserChoice";
+import { RootState } from "../../store";
+import { TUsers } from "../../types/typesUsersReducer";
 
 
 
@@ -30,6 +32,7 @@ const ProjectWindow: React.FC<ProjectWindowProps> = ({ project, currentWindow, s
     const [visibleUserChoice, setVisibleUserChoice] = useState<boolean>(false)
 
 
+    const { users } = useSelector((state: RootState) => state.users) as { users: TUsers[] }
 
 
     const dispatch = useDispatch()
@@ -88,11 +91,13 @@ const ProjectWindow: React.FC<ProjectWindowProps> = ({ project, currentWindow, s
                             ? <ProcessWindow project={project} process={process} />
                             : <div></div>
                         }
-                        {process.is_active
-                            ? <TaskExecutor />
-                            : <div></div>
-                        }
+                        {process.is_active && users.map(user =>
+                            user.executorProcess === process.title
+                                ? <TaskExecutor user={user}/>
+                                : <div></div>
+                        )}
                     </div>
+
                 )}
             </div>
             <div className={`userChoice ${visibleUserChoice ? "" : "userChoiceNone"} ${sizeWindow ? "userChoiceActive" : ""}`}>
