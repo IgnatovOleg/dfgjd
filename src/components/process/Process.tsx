@@ -10,7 +10,7 @@ import { AiOutlineEdit } from 'react-icons/ai';
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import { MdOutlineKeyboardReturn } from 'react-icons/md';
 import { BsFillPeopleFill } from 'react-icons/bs';
-import UserChoice from "../userChoice/UserChoice";
+import { LiaUserTimesSolid } from 'react-icons/lia';
 import { RootState } from "../../store";
 import { TUsers } from "../../types/typesUsersReducer";
 import { assignProcessAction } from "../../store/reducers/usersReducer";
@@ -31,6 +31,7 @@ interface IProcessProps {
 const Process: React.FC<IProcessProps> = ({ process, project, newSizeForClickOnProcess, sizeWindow, setSizeWindow, visibleUserChoice, setVisibleUserChoice }) => {
 
     const [titleProcess, setTitleProcess] = useState<boolean>(false)
+    const [assignedExecutor, setAssignedExecutro] = useState<boolean>(false)
 
     const { users } = useSelector((state: RootState) => state.users) as { users: TUsers[] }
 
@@ -47,8 +48,8 @@ const Process: React.FC<IProcessProps> = ({ process, project, newSizeForClickOnP
 
     const newNameProcess = (data: any) => {
         dispatch(removeProcessTitleAction(project, process, data))
-        for(let user of users) {
-            if(user.executorProcess === process.title) {
+        for (let user of users) {
+            if (user.executorProcess === process.title) {
                 dispatch(assignProcessAction(data.title, user))
             }
         }
@@ -64,6 +65,22 @@ const Process: React.FC<IProcessProps> = ({ process, project, newSizeForClickOnP
         if (e.target instanceof HTMLInputElement) return
         dispatch(activeProcessAction(project, process))
         newSizeForClickOnProcess(process)
+    }
+
+    const userChoice = () => {
+        setVisibleUserChoice(true)
+        setAssignedExecutro(true)
+    }
+
+    const userSuspension = () => {
+        const name: string = "none"
+        for(let user of users) {
+            if(user.executorProcess === process.title) {
+                dispatch(assignProcessAction(name, user))
+                console.log(user, "user");
+            }
+        }
+        setAssignedExecutro(false)
     }
 
 
@@ -91,9 +108,23 @@ const Process: React.FC<IProcessProps> = ({ process, project, newSizeForClickOnP
                 }
             </div>
             <div className="buttonsProcess" onClick={(e) => e.stopPropagation()}>
-                {process.is_active
-                    ? <BsFillPeopleFill className="btnStyle" onClick={() => setVisibleUserChoice(!visibleUserChoice)} />
-                    : <div></div>
+                {assignedExecutor
+                    ? <>
+                        {users.map(user =>
+                            <>
+                                {user.executorProcess === process.title
+                                    ? <LiaUserTimesSolid className="btnStyle" onClick={() => userSuspension()}/>
+                                    : <div></div>
+                                }
+                            </>
+                        )}
+                      </>
+                    : <>
+                        {process.is_active
+                            ? <BsFillPeopleFill className="btnStyle" onClick={() => userChoice()} />
+                            : <div></div>
+                        }
+                      </>
                 }
                 {titleProcess
                     ? <AiOutlineEdit className="btnStyle" onClick={() => setTitleProcess(false)} />
