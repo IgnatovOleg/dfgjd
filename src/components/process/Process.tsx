@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { activeProcessAction, removeProcessListAction, removeProcessTitleAction } from "../../store/reducers/projectsReducer";
 import { TProcesses, TProject } from "../../types/typesProjectsReducer";
 import Input from "../input/Input";
@@ -11,6 +11,9 @@ import { RiDeleteBin2Line } from 'react-icons/ri';
 import { MdOutlineKeyboardReturn } from 'react-icons/md';
 import { BsFillPeopleFill } from 'react-icons/bs';
 import UserChoice from "../userChoice/UserChoice";
+import { RootState } from "../../store";
+import { TUsers } from "../../types/typesUsersReducer";
+import { assignProcessAction } from "../../store/reducers/usersReducer";
 
 
 interface IProcessProps {
@@ -29,6 +32,8 @@ const Process: React.FC<IProcessProps> = ({ process, project, newSizeForClickOnP
 
     const [titleProcess, setTitleProcess] = useState<boolean>(false)
 
+    const { users } = useSelector((state: RootState) => state.users) as { users: TUsers[] }
+
     const dispatch = useDispatch()
 
     const {
@@ -42,6 +47,11 @@ const Process: React.FC<IProcessProps> = ({ process, project, newSizeForClickOnP
 
     const newNameProcess = (data: any) => {
         dispatch(removeProcessTitleAction(project, process, data))
+        for(let user of users) {
+            if(user.executorProcess === process.title) {
+                dispatch(assignProcessAction(data.title, user))
+            }
+        }
         setTitleProcess(true)
         reset()
     }

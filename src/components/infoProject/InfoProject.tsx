@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store";
 import { addNewProcessAction, removeProjectTitleAction } from "../../store/reducers/projectsReducer";
+import { assignProcessAction } from "../../store/reducers/usersReducer";
 import { TProcesses, TProject } from "../../types/typesProjectsReducer";
+import { TUsers } from "../../types/typesUsersReducer";
 import Button from "../button/Button";
 import Input from "../input/Input";
 import Process from "../process/Process";
@@ -23,6 +26,7 @@ const InfoProject: React.FC<InfoProjectProps> = ({ project, newSizeForClickOnPro
     const [titleProject, setTitleProject] = useState<boolean>(true)
 
 
+
     const {
         register,
         handleSubmit,
@@ -37,6 +41,7 @@ const InfoProject: React.FC<InfoProjectProps> = ({ project, newSizeForClickOnPro
 
     const renameProject = (data: DataForm) => {
         dispatch(removeProjectTitleAction(project, data))
+        
         setTitleProject(true)
         reset()
     }
