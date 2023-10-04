@@ -41,7 +41,7 @@ const ProjectWindow: React.FC<ProjectWindowProps> = ({ project, currentWindow, s
         dispatch(removeProjectsAction(project))
     }
 
-    const newSizeForClickOnProcess = (process?: TProcesses, e?: React.MouseEvent) => {
+    const newSizeForClickOnProcess = (process?: TProcesses) => {
 
         if (currentWindow === project.id) {
             if (process?.is_active) {

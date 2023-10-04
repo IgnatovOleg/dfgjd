@@ -2,7 +2,9 @@
     display: flex;
     justify-content: space-between;
     padding: 5px 10px;
-    gap: 15px;
+    gap: 5px;
+
+    transition: 1s;
 
     h3 {
         word-break: break-all;
@@ -24,6 +26,7 @@
             cursor: pointer;
             transform: translateX(100px);
         }
+
         .btnStyle:hover {
             background: #c4dfe6;
         }
@@ -35,7 +38,29 @@
             transition: 0.2s ease;
         }
     }
+
+    .modalSelection {
+        position: absolute;
+        top: 40%;
+        left: 15%;
+
+        display: flex;
+        flex-direction: column;
+
+        padding: 10px;
+        background: #c4dfe6;
+        border-radius: 15px;
+
+        h3 {
+            cursor: pointer;
+            margin-right: auto;
+        }
+    }
+    .modalSelectionNone {
+        display: none;
+    }
 }
+
 .taskContainer:hover .btnStyle {
     transform: translateX(0px);
     opacity: 1;

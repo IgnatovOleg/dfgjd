@@ -19,7 +19,7 @@
 
     .tasks {
         width: 100%;
-        overflow-y: auto;
+        overflow-y: hidden;
     }
     .tasks::-webkit-scrollbar {
         display: none;

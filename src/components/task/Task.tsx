@@ -8,17 +8,27 @@ import { RiDeleteBin2Line } from 'react-icons/ri';
 import { MdOutlineKeyboardReturn } from 'react-icons/md';
 import { BiAddToQueue } from 'react-icons/bi';
 
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { editTaskDescAction, removeTaskFromListaction, visibleTitleAction, } from "../../store/reducers/projectsReducer"
+import { RootState } from "../../store"
+import { TUsers } from "../../types/typesUsersReducer"
 
 interface TaskProps {
     project: TProject,
     process: TProcesses,
     task: TTask,
+    currentTasks?: number | null,
+    setCurrentTasks: (currentTasks: number | null) => void,
+    visibleModalSelection: boolean,
+    setVisibleModalSelection: (visibleModal: boolean) => void,
 }
 
 
-const Task: React.FC<TaskProps> = ({ project, process, task }) => {
+const Task: React.FC<TaskProps> = ({ project, process, task, currentTasks, setCurrentTasks, visibleModalSelection, setVisibleModalSelection }) => {
+
+
+
+    const { users } = useSelector((state: RootState) => state.users) as { users: TUsers[] }
 
     const {
         register,
@@ -45,9 +55,24 @@ const Task: React.FC<TaskProps> = ({ project, process, task }) => {
         reset()
     }
 
+    const visibleTasks = () => {
+        if (currentTasks === null || currentTasks === task.id) {
+            return { opacity: "1" }
+        } else {
+            return { opacity: "0" }
+        }
+    }
+    const visibleSelectionList = () => {
+        setCurrentTasks(task.id)
+        setVisibleModalSelection(true)
+    }
+    const addTaskToListExecutor = () => {
+        setVisibleModalSelection(false)
+        setCurrentTasks(null)
+    }
 
     return (
-        <div className="taskContainer">
+        <div style={visibleTasks()} className="taskContainer">
             {task.visibleTitle
                 ? <h3>{task.title}</h3>
                 : <form onSubmit={handleSubmit(removeDescriptionTask)}>
@@ -64,12 +89,25 @@ const Task: React.FC<TaskProps> = ({ project, process, task }) => {
                 </form>
             }
             <div className="btnTask">
-                <BiAddToQueue className="btnStyle"/>
+                {users.map(user =>
+                    <>
+                        {user.executorProcess === process.title
+                            ? <BiAddToQueue className="btnStyle" onClick={() => visibleSelectionList()}/>
+                            : <div></div>
+                    }
+                    </>
+                )}
+                
                 {task.visibleTitle
                     ? <AiOutlineEdit className="btnStyle" onClick={() => visibleTitle()} />
                     : <MdOutlineKeyboardReturn className="btnStyle" onClick={() => visibleTitle()} />
                 }
                 <RiDeleteBin2Line className="btnStyle" onClick={() => removeTask()} />
+            </div>
+            <div className={`modalSelection ${visibleModalSelection ? "" : "modalSelectionNone"} `}>
+                <h3 onClick={() => addTaskToListExecutor()}>Add to current tasks list</h3>
+                <h3 onClick={() => addTaskToListExecutor()}>Add to planned tasks list</h3>
+                <h3 onClick={() => addTaskToListExecutor()}>Add to complated tasks list</h3>
             </div>
         </div>
     )
