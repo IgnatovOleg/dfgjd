@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { editTaskDescAction, removeTaskFromListaction, visibleTitleAction, } from "../../store/reducers/projectsReducer"
 import { RootState } from "../../store"
 import { TUsers } from "../../types/typesUsersReducer"
+import { addTaskToCurrentAction, addTaskToPlannedAction } from "../../store/reducers/usersReducer"
 
 interface TaskProps {
     project: TProject,
@@ -66,7 +67,13 @@ const Task: React.FC<TaskProps> = ({ project, process, task, currentTasks, setCu
         setCurrentTasks(task.id)
         setVisibleModalSelection(true)
     }
-    const addTaskToListExecutor = () => {
+    const addTaskToListCurrent = () => {
+        dispatch(addTaskToCurrentAction(process.title, task))
+        setVisibleModalSelection(false)
+        setCurrentTasks(null)
+    }
+    const addTaskToListPlanned = () => {
+        dispatch(addTaskToPlannedAction(process.title, task))
         setVisibleModalSelection(false)
         setCurrentTasks(null)
     }
@@ -92,12 +99,12 @@ const Task: React.FC<TaskProps> = ({ project, process, task, currentTasks, setCu
                 {users.map(user =>
                     <>
                         {user.executorProcess === process.title
-                            ? <BiAddToQueue className="btnStyle" onClick={() => visibleSelectionList()}/>
+                            ? <BiAddToQueue className="btnStyle" onClick={() => visibleSelectionList()} />
                             : <div></div>
-                    }
+                        }
                     </>
                 )}
-                
+
                 {task.visibleTitle
                     ? <AiOutlineEdit className="btnStyle" onClick={() => visibleTitle()} />
                     : <MdOutlineKeyboardReturn className="btnStyle" onClick={() => visibleTitle()} />
@@ -105,9 +112,8 @@ const Task: React.FC<TaskProps> = ({ project, process, task, currentTasks, setCu
                 <RiDeleteBin2Line className="btnStyle" onClick={() => removeTask()} />
             </div>
             <div className={`modalSelection ${visibleModalSelection ? "" : "modalSelectionNone"} `}>
-                <h3 onClick={() => addTaskToListExecutor()}>Add to current tasks list</h3>
-                <h3 onClick={() => addTaskToListExecutor()}>Add to planned tasks list</h3>
-                <h3 onClick={() => addTaskToListExecutor()}>Add to complated tasks list</h3>
+                <h3 onClick={() => addTaskToListCurrent()}>Add to current tasks list</h3>
+                <h3 onClick={() => addTaskToListPlanned()}>Add to planned tasks list</h3>
             </div>
         </div>
     )

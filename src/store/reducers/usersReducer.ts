@@ -1,11 +1,12 @@
 import { current } from "@reduxjs/toolkit"
+import { TProcesses, TTask } from "../../types/typesProjectsReducer"
 import { actionTypesUsers, Iusers, TUsers, usersActionsTypes } from "../../types/typesUsersReducer"
 
 const defaultState: Iusers = {
     users: [
         {
             id: 1, login: "ignatovoleg", password: "ignatovOleg!", confirmPassword: "ignatovOleg!", firstName: "Oleg", lastName: "Ignatov", middleName: "Volodimirovich", email: "08623.ignatovoleg@gmail.com", phone: "380934352419", authorization: true,
-            executorProcess: "", currentTasks: [{ title: "Current tasks", items: [] }], plannedTasks: [{ title: "Planned tasks", items: [] }], complatedTasks: [{ title: "Complated tasks", items: [] }]
+            executorProcess: "", currentTasks: [], plannedTasks: [], complatedTasks: []
         },
         { id: 2, login: "savchenkoserhiy", password: "savchenkoSerhiy!", confirmPassword: "savchenkoSerhiy!", firstName: "Serhiy", lastName: "Savchenko", middleName: "Anatolievich", email: "08623.ignatovoleg@gmail.com", phone: "38095432830", authorization: false, executorProcess: "" },
         { id: 3, login: "ignatovaVika", password: "ignatovaVika!", confirmPassword: "ignatovaVika!", firstName: "Vika", lastName: "Ignatova", middleName: "Olexandrovna", email: "08623.ignatovoleg@gmail.com", phone: "380934352419", authorization: false, executorProcess: "" },
@@ -52,9 +53,20 @@ export const usersReducer = (state = defaultState, action: actionTypesUsers) => 
             const currentUserForAssignProcess = state.users.findIndex(u => u.id === userForAssignProcess.id)
             const newArrayForAssignProcess = [...state.users]
             newArrayForAssignProcess[currentUserForAssignProcess].executorProcess = processTitle || newArrayForAssignProcess[currentUserForAssignProcess].executorProcess
-
             return { ...state, users: [processTitle, userForAssignProcess] }
 
+        case usersActionsTypes.ADD_TASK_TO_CURRENT:
+            const { processForAddToCurrent, taskForAddToCurrent } = action.payload
+            const userForAddToCurrent = state.users.findIndex(u => u.executorProcess === processForAddToCurrent)
+            const newArrayForAddToCurrent = [...state.users]
+            newArrayForAddToCurrent[userForAddToCurrent].currentTasks?.push(taskForAddToCurrent)
+            return { ...state, users: newArrayForAddToCurrent }
+        case usersActionsTypes.ADD_TASK_TO_PLANNED:
+            const {processForAddToPlanned, taskForAddToPlanned} = action.payload
+            const userForAddToPlanned = state.users.findIndex(u => u.executorProcess === processForAddToPlanned)
+            const newArrayForAddToPlanned = [...state.users]
+            newArrayForAddToPlanned[userForAddToPlanned].plannedTasks?.push(taskForAddToPlanned)
+            return {...state, users: newArrayForAddToPlanned}
         default:
             return { ...state }
     }
@@ -64,4 +76,7 @@ export const addUserAction = (payload: TUsers) => ({ type: usersActionsTypes.ADD
 export const authorizationAction = (payload: TUsers) => ({ type: usersActionsTypes.AUTHORIZATION_USER, payload })
 export const exitUserAction = (payload: TUsers) => ({ type: usersActionsTypes.EXIT_USER, payload })
 export const editUserInfoAction = (data: TUsers, user: TUsers) => ({ type: usersActionsTypes.EDIT_USER_INFO, payload: { data, user } })
+
 export const assignProcessAction = (processTitle: string, userForAssignProcess: TUsers) => ({ type: usersActionsTypes.ASSIGN_PROCESS, payload: { processTitle, userForAssignProcess } })
+export const addTaskToCurrentAction = (processForAddToCurrent: string, taskForAddToCurrent: TTask) => ({ type: usersActionsTypes.ADD_TASK_TO_CURRENT, payload: { processForAddToCurrent, taskForAddToCurrent } })
+export const addTaskToPlannedAction = (processForAddToPlanned: string, taskForAddToPlanned: TTask) => ({ type: usersActionsTypes.ADD_TASK_TO_PLANNED, payload: { processForAddToPlanned, taskForAddToPlanned } })

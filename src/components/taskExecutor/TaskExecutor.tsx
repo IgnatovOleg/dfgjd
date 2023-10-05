@@ -16,30 +16,24 @@ const TaskExecutor: React.FC<TaskExecutorProps> = ({ user, }) => {
                 <img src="" alt="" />
                 <h3>{user.firstName} {user.lastName}</h3>
             </div>
-            {user.currentTasks?.map(current =>
-                <div>
-                    <h3>{current.title} list:</h3>
-                    {current.items?.map(item => 
-                        <h4>{item.title}</h4>
-                    )}
-                </div>
-            )}
-            {user.plannedTasks?.map(planned =>
-                <div>
-                    <h3>{planned.title} list:</h3>
-                    {planned.items?.map(item => 
-                        <h4>{item.title}</h4>
-                    )}
-                </div>
-            )}
-            {user.complatedTasks?.map(complated =>
-                <div>
-                    <h3>{complated.title} list:</h3>
-                    {complated.items?.map(item => 
-                        <h4>{item.title}</h4>
-                    )}
-                </div>
-            )}
+            <div>
+                <h4>Current task list:</h4>
+                {user.currentTasks?.map(current =>
+                    <h3>{current.title}</h3>
+                )}
+            </div>
+            <div>
+                <h4>Planned task list:</h4>
+                {user.plannedTasks?.map(planned =>
+                    <h3>{planned.title}</h3>
+                )}
+            </div>
+            <div>
+                <h4>Planned task list:</h4>
+                {user.complatedTasks?.map(complated =>
+                    <h3>{complated.title}</h3>
+                )}
+            </div>
         </div>
     )
 }

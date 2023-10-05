@@ -26,8 +26,6 @@ const UserChoice: React.FC<UserChoiceProps> = ({ visibleUserChoice, setVisibleUs
             for (let b of a.processes) {
                 if (b.is_active) {
                     dispatch(assignProcessAction(b.title, user))
-                    console.log(user, "user");
-                    
                 }
             }
         }
